@@ -91,8 +91,10 @@
         flex-direction: column;
         flex-wrap: wrap;
         align-items: center;
-        /* background-color: var(--color-blue); */
-        background-color: orange;
+        /* background-color: var(--color-blue);  */
+         /* background-color: orange; */
+         background: linear-gradient(var(--background-50), var(--background-50)), url(../images/poolview2.jpg), no-repeat center;
+         background-size: cover;
     }
     .nav-menu {
         top: 0;
@@ -679,35 +681,45 @@ background-position: center;
     }
     
    
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background-color: #444;
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        min-width: 200px;
-        z-index: 1;
-    }
-    
-    .dropdown-content a {
-        color: #fff;
-        padding: 12px 16px;
-        text-decoration: none;
+    .availability-form {
+        background: #f9f9f9;
+        padding: 15px;
+        margin-top: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        
+      }
+      
+      .availability-form .form-group {
+        margin-bottom: 10px;
+      }
+      
+      .availability-form label {
+        font-weight: bold;
         display: block;
-        background-color: #444; /* Background color of dropdown items */
-    }
-    
-    .dropdown-content a:hover {
-        background-color: #555; /* Darker background on hover */
-    }
-    
-    
-    .nav ul li.dropdown:hover .dropdown-content {
-        display: block;
-    }
-    
-    .nav ul li.dropdown {
-        position: relative;
-    }
-    
+        margin-bottom: 5px;
+      }
+      
+      .availability-form input[type="date"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+      
+      .btn-confirm-availability {
+        background: #007BFF;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background 0.3s;
+      }
+      
+      .btn-confirm-availability:hover {
+        background: #0056b3;
+      }
+      
