@@ -12,6 +12,7 @@
     <meta name="robots" content="nofollow">
     <meta name="copyright" content="lincensed under CC BY 4.0">
     <!-- Font style: montserrat regular 400, bold 700 and cormorant garamond bold 700 -->
+    <link rel="icon" type="image/png" href="./images/logo.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
@@ -103,8 +104,23 @@
                             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non quos voluptatum omnis architecto, illum quae voluptatibus nam harum ipsa labore odio iste perspiciatis rerum laboriosam reprehenderit, magni possimus sed deleniti.</p>
                         </details>
                     </div>
-                    
+                    <div class="room-actions">
+                        <button class="btn-check-availability" onclick="toggleAvailabilityForm(this)">Check Availability</button>
                     <button class="article-section-room-card-styles-details-button">GHC250  Avg/night</button>
+                    <button class="btn-book-now">Book Now</button>
+                </div>
+                <div class="availability-form" style="display: none;">
+                    <form>
+                        <div class="form-group">
+                            <label for="checkin">Check-in Date</label>
+                            <input type="date" name="checkin" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="checkout">Check-out Date</label>
+                            <input type="date" name="checkout" required>
+                        </div>
+                        <button type="button" class="btn-confirm-availability" onclick="checkRoomAvailability()">Check Availability</button>
+                    </form>
                 </div>
             </div>
             <div class="article-section-room-card-styles">
@@ -117,17 +133,40 @@
                             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non quos voluptatum omnis architecto, illum quae voluptatibus nam harum ipsa labore odio iste perspiciatis rerum laboriosam reprehenderit, magni possimus sed deleniti.</p>
                         </details>
                     </div>
-                    <button class="article-section-room-card-styles-details-button">GHC200  Avg/night</button>
+
+
+                    <div class="room-actions">
+                        <button class="btn-check-availability" onclick="toggleAvailabilityForm(this)">Check Availability</button> 
+                        <button class="article-section-room-card-styles-details-button">GHC200  Avg/night</button> 
+                        <button class="btn-book-now">Book Now</button>
+                    </div>
+                    <div class="availability-form" style="display:none">
+                        <form>
+                            <div class="form-group">
+                                <label for="checkin">Check-in Date</label>
+                                <input type="date" name="checkin" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="checkout">Check-out Date</label>
+                                <input type="date" name="checkout" required>
+                            </div>
+                            <button type="button" class="btn-confirm-availability" onclick="checkRoomAvailability()">Check Availability</button>
+                        </form>
+                    </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- page body -->
     </article>
-    <div>
-        <div class="triangule-footer"> <img src="../images/triangule.svg" alt=""> </div>
-    </div>
-    <footer>
+    <!-- <div>
+        <div class=""> <img src="../images/triangule.svg" alt=""> </div>
+    </div> -->
+    <footer >
+        
+        
+
         <div class="footer-contact">
             <div class="footer-left">
                 <img src="../images/logo.jpg" alt="Hotel 734 Logo">
@@ -136,9 +175,9 @@
         </div>
         <div class="footer-about">
             <ul>
-                <li>About Us</li>
-                <li>Contact</li>
-                <li>Terms & Conditions</li>
+                <li><a href="#content-body" style="color: #FFD700;">About Us</a></li>
+                <li><a href="contact_us.html" style="color: #FFD700;">Contact</a></li>
+                <li style="color: #FFD700;">Admin</li>
             </ul>
         </div>
         <div class="footer-socials">
@@ -187,7 +226,7 @@
           }
         }
       </script>
-      
+    
       
 </body>
 </html>
