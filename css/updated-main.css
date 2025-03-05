@@ -1,0 +1,34 @@
+:root {
+    --font-montserrat: 'Montserrat', sans-serif;
+    --font-garamond: 'Cormorant Garamond', serif;
+    --color-yellow: #E0B973;
+    --color-blue: #14274A;
+    --color-white: #FFFFFF;
+    --background-main: #f8f8f8;
+    --background-50: rgba(20, 39, 74, 0.5);
+    --background-30: rgba(20, 39, 74, 0.3);
+    --background-20: rgba(20, 39, 74, 0.2);
+    --shodow-3: 0px 3px 3px rgba(0, 0, 0, 0.25);
+    --space-12xl: clamp(31.50rem, calc(29.74rem + 8.78vw), 36.00rem);
+    --space-11xl: clamp(28.88rem, calc(27.27rem + 8.05vw), 33.00rem);
+}
+
+/* Room image styles */
+.article-section-main-room-img-content,
+.article-section-main-beach-img-content {
+    width: var(--space-11xl);
+    height: var(--space-12xl); /* Set a fixed height to prevent movement */
+    background-size: cover;
+    background-position: center;
+    overflow: hidden; /* Prevent overflow */
+}
+
+/* Container for images to maintain layout */
+.article-section-main-room-img,
+.article-section-main-beach-img {
+    display: flex;
+    justify-content: center; /* Center the images */
+    align-items: center; /* Align items vertically */
+    height: var(--space-12xl); /* Set a fixed height for the container */
+    position:fixed;
+}

@@ -558,7 +558,8 @@
     }
     .article-section-room-card-styles-imgdouble {
         width: 100%;
-        height: 300px; /* Set a fixed height */
+        height: var(--space-12xl); /* Set height to match the EXPENSIVE room */
+
         background: linear-gradient(var(--background-20), var(--background-20)), url(../images/room2.jpg), no-repeat center;
         background-size: cover;
         background-position: center;
@@ -580,7 +581,8 @@ background-position: center;
 
     .article-section-room-card-styles-imgtwin {
         width: 100%;
-        height: 300px; /* Set a fixed height */
+        height: var(--space-12xl); /* Set height to match the EXPENSIVE room */
+
         background: linear-gradient(var(--background-20), var(--background-20)), url(../images/room3.jpg), no-repeat center;
         background-size: cover;
         background-position: center;
@@ -717,12 +719,16 @@ background-position: center;
 footer {
     width: 100vw;
     height: auto; /* Change from min-height to auto */
+    position: relative; /* Ensure footer is positioned relative to the content */
+
     background-color: var(--color-blue);
     display: flex;
     align-items: center;
     justify-content: space-around;
     flex-wrap: wrap;
     padding: 20px 0; /* Add padding for better spacing */
+    margin-top: auto; /* Push footer to the bottom of the page */
+
 
        
        /* position: relative;
