@@ -547,47 +547,45 @@
         border: 2px solid var(--color-blue);
         border-radius: 4px;
         margin-bottom: 10vh;
+
+
+        position: relative; /* For absolute positioning of forms */
+        overflow: visible; /* Allow forms to overflow */
+        
     }
     .article-section-room-card-styles-imgsingle {
         align-self: center;
         width: 100%;
-        height: var(--space-12xl);
+        height: 500px; /* Set fixed height */
         background: linear-gradient(var(--background-20), var(--background-20)), url(../images/room1.jpg), no-repeat center;
         background-size: cover;
         background-position: center;
+
+
     }
     .article-section-room-card-styles-imgdouble {
         width: 100%;
-        height: var(--space-12xl); /* Set height to match the EXPENSIVE room */
-
-        background: linear-gradient(var(--background-20), var(--background-20)), url(../images/room2.jpg), no-repeat center;
+        height: 500px; /* Set fixed height */
+        background: linear-gradient(var(--background-20), var(--background-20)), 
+                    url("../images/room2.jpg") no-repeat center/cover;
         background-size: cover;
         background-position: center;
+        margin: 0;
+
+   
     }
-
-    /* .article-section-room-card-styles-imgtwin {
-        width: 100%;
-    
-        height: var(--space-12xl);
-        background: linear-gradient(var(--background-20), var(--background-20)), url(../images/room3.jpg), no-repeat center;
-        background-size: cover;
-background-position: center;
-
-
-      
-        
-    } */
 
 
     .article-section-room-card-styles-imgtwin {
         width: 100%;
-        height: var(--space-12xl); /* Set height to match the EXPENSIVE room */
-
+        height: 500px; /* Set fixed height */
         background: linear-gradient(var(--background-20), var(--background-20)), url(../images/room3.jpg), no-repeat center;
+        object-fit: cover; /* Maintain aspect ratio */
         background-size: cover;
         background-position: center;
-        overflow: hidden; /* Prevent overflow */
+
     }
+
 
     .article-section-room-card-styles-type {
         background-color: var(--color-blue);
@@ -606,8 +604,9 @@ background-position: center;
         justify-content: space-around;
         align-items: center;
 
-        /* min-height: 200px;
-        overflow: hidden; */
+
+        
+        
     }
     .article-section-room-card-styles-details div {
         display: flex;
@@ -626,8 +625,9 @@ background-position: center;
         list-style-position: inside;
         text-align: center;
         font-weight: 700;
-        cursor: pointer;   
+        cursor: pointer;
     }
+
     .article-section-room-card-styles-details-button {
         width: var(--space-3xl);
         height: var(--space-m);
