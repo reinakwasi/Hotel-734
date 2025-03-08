@@ -4,25 +4,113 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel 734 | rooms</title>
+    <title>Hotel 734 | Expensive Room</title>
     <meta name="keywords" content="Luxury Hotels">
     <meta name="author" content="Ayokunle for web site disign from Figma community">
     <meta name="author" content="Francisco Cienfuegos for web site development">
     <meta name="copyright" content="Design from Figma community">
     <meta name="robots" content="nofollow">
     <meta name="copyright" content="lincensed under CC BY 4.0">
-    <!-- Font style: montserrat regular 400, bold 700 and cormorant garamond bold 700 -->
     <link rel="icon" type="image/png" href="./images/logo.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Reset css with normalize -->
     <link rel="stylesheet" href="../css/normalize.css">
-    <!-- Style sheets -->
     <link rel="stylesheet" href="../css/main.css">
+
+
+
+    <style>
+        .header-exp {
+            position: relative;
+            width: 100vw;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        
+        .background-slides {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+.background-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(var(--background-50), var(--background-50));
+    pointer-events: none;
+}
+
+.nav-menu {
+    position: relative;
+    z-index: 2;
+}
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        let interval;
+    
+        function showNextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+    
+        function startSlideshow() {
+            interval = setInterval(showNextSlide, 3000); // Change every 5 seconds
+        }
+        // Initialize first slide
+    slides[0].classList.add('active');
+    startSlideshow();
+
+    // // Optional: Pause on hover
+    // const header = document.querySelector('.header-exp');
+    // header.addEventListener('mouseenter', () => clearInterval(interval));
+    // header.addEventListener('mouseleave', startSlideshow);
+
+});
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
 </head>
 <body>
-    <header class="header-rooms">
+    <header class="header-exp">
+        <div class="background-slides">
+            <div class="slide active" style="background-image: url('./images/room2.jpg')"></div>
+            <div class="slide" style="background-image: url('./images/view.jpg')"></div>
+            <div class="slide" style="background-image: url('./images/room1.jpg')"></div>
+            <!-- Add more slides as needed -->
+        </div>
+        <div class="background-overlay"></div>
+
         <nav class="nav-menu">
             <a href="don.html"><img src="../images/logo.jpg" alt="Luxury Hotels"></a>
             <ul>
@@ -31,42 +119,76 @@
                 <li class="list-style list-style::after"><a class="a-text-style" href="rooms.html">Rooms</a></li>
                 <li class="nav-manu-ul-li"><a href="contact_us.html">Contact-us</a></li>
             </ul>
-            </nav>
+        </nav>
     </header>
-            <section class="booking-section">
-                <h2 class="room-title">Expensive Room</h2>
-                <!-- <div class="divider">
-                  <span class="line"></span>
-                  <span class="square"></span>
-                  <span class="line"></span>
-                </div> -->
-                <p class="price">GHC300 <span>- Per Night</span></p>
-              
-              
-                <div class="form-container">
-                    <div class="form-group">
-                   <label for="check-in">Check-in</label>
-                    <input type="date" id="check-in" placeholder="Check-in" name="check-in">
-                    </div>
-                    <div class="form-group">
-                        <label for="check-out">Check-out</label>
-                    <input type="date" id="check-out" placeholder="Check-out" name="check-out">
-                    </div>
-                    <div class="form-group">
-                        <label for="no">Number of Rooms</label>
-                        <input type="number" id="no" name="adults" min="1" max="5" value="1">
-                      </div>
-                    
-                  </div>
-                  <button class="btn-check-availability">Check Availability</button>
-                  <button class="book-now-btn">Book Now</button>
-                </section>
+    
+    <section class="booking-section">
 
+        <h2 class="room-title">Expensive Room</h2>
+        <p class="price">GHC300 <span>- Per Night</span></p>
+        <div class="form-container">
+            <div class="form-group">
+                <label for="check-in">Check-in</label>
+                <input type="date" id="check-in" placeholder="Check-in" name="check-in">
+            </div>
+            <div class="form-group">
+                <label for="check-out">Check-out</label>
+                <input type="date" id="check-out" placeholder="Check-out" name="check-out">
+            </div>
+            <div class="form-group">
+                <label for="no">Number of Rooms</label>
+                <input type="number" id="no" name="adults" min="1" max="5" value="1">
+            </div>
+        </div>
+        <button class="btn-check-availability">Check Availability</button>
+        <button class="book-now-btn">Book Now</button>
+    </section>
 
+    <section class="amenities-section">
+        <h3>Amenities</h3>
+        <ul class="amenities-list">
+            <li>✔ Free Swimming Pool</li>
+            <li>✔ Satellite TV Channels</li>
+            <li>✔ Air Conditioned Room</li>
+            <li>✔ Free Wifi</li>
+            <li>✔ Daily Laundry / Dry Cleaning</li>
+            <li>✔ 24h Room Service</li>
+            <li>✔ Max 4 people</li>
+        </ul>
+    </section>
 
+    <div class="triangule-footer"> <img src="../images/triangule.svg" alt=""> </div>
+    <footer>
+        <div class="footer-contact">
+            <div class="footer-left">
+            <img src="../images/logo.jpg" alt="Hotel 734 Logo">
+            </div>
+            <p class="footer-contact-info">New Edubiase, Off Bronikrom Road<br><br>+233 24 409 3821<br><br>Email: <a href="mailto:info@hotel734.com" style="text-decoration: none;">info@hotel734.com</a></p>
+        </div>
+        <div class="footer-about">
+            <ul>
+                <li><a href="don.html" style="color: #FFD700;">About Us</a></li>
+                <li><a href="rooms.html" style="color: #FFD700;">Rooms</a></li>
+                <li style="color: #FFD700;">Admin</li>
+            </ul>
+        </div>
+        <div class="footer-socials">
+            <ul>
+                <li><a href="https://www.facebook.com/hotel734?mibextid=ZbWKwL"><img class="socials-facebook" src="../images/facebook_icon.png" alt="">Facebook</a></li>
+                <li><a href="https://www.instagram.com/hotel.734?igsh=MWw2NXBxZ3R5a3V3YQ=="><img class="socials-instagram" src="../images/instagram_icon.png" alt="">Instagram</a></li>
+            </ul>
+        </div>
+        <div class="footer-form">
+            <p>Subscribe to our newsletter</p>
+            <form>
+                <div class="footer-form-container">
+                    <input class="footer-form-mail" type="email" value="Email Address">
+                    <input class="footer-form-ok" type="submit" value="OK">
+                </div>
+            </form>
+        </div>
+    </footer>  
 
-
-              
-                 
-            </html>
-            </body>
+   
+</body>
+</html>
