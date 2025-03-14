@@ -55,17 +55,17 @@ function toggleAvailabilityForm(button) {
 
 
 
-function toggleAvailabilityForm(button) {
-    const form = button.closest('.room-actions').nextElementSibling;
-    const isHidden = form.style.display === "none" || form.style.display === "";
+// function toggleAvailabilityForm(button) {
+//     const form = button.closest('.room-actions').nextElementSibling;
+//     const isHidden = form.style.display === "none" || form.style.display === "";
     
-    // Close all other forms
-    document.querySelectorAll('.availability-form').forEach(f => {
-        f.style.display = "none";
-        f.previousElementSibling.querySelector('.btn-check-availability').textContent = "Check Availability";
-    });
+//     // Close all other forms
+//     document.querySelectorAll('.availability-form').forEach(f => {
+//         f.style.display = "none";
+//         f.previousElementSibling.querySelector('.btn-check-availability').textContent = "Check Availability";
+//     });
     
-    // Toggle current form
-    form.style.display = isHidden ? "block" : "none";
-    button.textContent = isHidden ? "Hide Form" : "Check Availability";
-}
+//     // Toggle current form
+//     form.style.display = isHidden ? "block" : "none";
+//     button.textContent = isHidden ? "Hide Form" : "Check Availability";
+// }
