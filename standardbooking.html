@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel 734 | Book Now</title>
+    <title>Hotel 734 | Standard Booking</title>
     <meta name="keywords" content="Luxury Hotels">
     <meta name="author" content="Ayokunle for web site design from Figma community">
     <meta name="author" content="Francisco Cienfuegos for web site development">
@@ -18,6 +18,55 @@
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/main.css">
     <style>
+
+.header-bes {
+            position: relative;
+            width: 100vw;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        
+        .background-slides {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+        .background-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(var(--background-50), var(--background-50));
+            pointer-events: none;
+        }
+
+        .nav-menu {
+            position: relative;
+            z-index: 2;
+        }
+
+
+
+
+
+
+
+
+
         /* Refined Booking Form Styles */
         .booking-section {
             width: 100%; /* Full width to extend across the page */
@@ -179,27 +228,23 @@
     </style>
 </head>
 <body>
-    <header class="header-rooms">
+    <header class="header-bes">
+        <div class="background-slides">
+            <div class="slide active" style="background-image: url('./images/room2.jpg')"></div>
+            <div class="slide" style="background-image: url('./images/view.jpg')"></div>
+            <div class="slide" style="background-image: url('./images/room1.jpg')"></div>
+        </div>
+        <div class="background-overlay"></div>
+
         <nav class="nav-menu">
             <a href="don.html"><img src="./images/logo.jpg" alt="Luxury Hotels"></a>
             <ul>
                 <li class="nav-manu-ul-li"><a href="don.html">Home</a></li>
-                <li class="nav-manu-ul-li"><a href="facilities.html">Facilities</a></li>
-                <li class="list-style list-style::after"><a class="a-text-style" href="rooms.html">Rooms</a></li>
+                <li class="nav-manu-ul-li"><a href="rooms.html">Rooms</a></li>
+                <li class="list-style list-style::after"><a class="a-text-style" href="standardbooking.html">Booking</a></li>
                 <li class="nav-manu-ul-li"><a href="contact_us.html">Contact-us</a></li>
             </ul>
         </nav>
-        <section class="section-header-copy">
-            <p>WELCOME TO</p>
-            <h1 class="section-header-copy-h1">HOTEL</h1>
-            <h2>734</h2>
-            <h3>Excellence Pays It All</h3>
-        </section>
-        <section class="section-header-CTA">
-            <a href="#content-body" class="CTA-scroll-text">Scroll</a>
-            <a href="#content-body"><img src="./images/down_scroll.png" class="CTA-scroll-imgstatic" alt=""></a>
-            <a href="#content-body" class="CTA-scroll-animate"><img src="./images/down_scroll.png" alt=""></a>
-        </section>
     </header>
 
     <main id="content-body">
@@ -228,11 +273,11 @@
                     </div>
                     <div class="summary-item">
                         <span>Room Info:</span>
-                        <span id="room-display">Standard Room - $80</span>
+                        <span id="room-display">Standard Room - GHC250</span>
                     </div>
                     <div class="summary-item">
                         <span>Total Cost:</span>
-                        <span id="total-cost">$0</span>
+                        <span id="total-cost">GHC0</span>
                     </div>
                 </div>
 
@@ -255,14 +300,6 @@
                         <div class="form-group">
                             <label for="phone">Phone *</label>
                             <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="city">City</label>
-                            <input type="text" id="city" name="city" placeholder="Enter your city">
-                        </div>
-                        <div class="form-group">
-                            <label for="address">Address</label>
-                            <input type="text" id="address" name="address" placeholder="Enter your address">
                         </div>
                         <div class="form-group">
                             <label for="check-in">Check-In Date *</label>
@@ -297,9 +334,18 @@
                 <div class="special-requirements">
                     <h3>Special Requirements</h3>
                     <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="city" placeholder="Enter your city">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address" placeholder="Enter your address">
+                    </div>
+                    <div class="form-group">
                         <textarea id="special-requirements" name="special-requirements" placeholder="Any special requests?"></textarea>
                     </div>
-                   
+                    <div class="form-group promo-code">
+                        
                         <button type="submit" class="form-submit-btn">Submit</button>
                     </div>
                 </div>
@@ -354,14 +400,14 @@
             document.getElementById('adult-display').textContent = adults || '0';
             document.getElementById('child-display').textContent = children || '0';
 
-            // Simple cost calculation (example: $80 per night)
+            
             if (checkIn && checkOut) {
                 const startDate = new Date(checkIn);
                 const endDate = new Date(checkOut);
                 const nights = (endDate - startDate) / (1000 * 60 * 60 * 24);
-                const costPerNight = 80;
+                const costPerNight = 250;
                 const totalCost = nights * costPerNight;
-                document.getElementById('total-cost').textContent = `$${totalCost || 0}`;
+                document.getElementById('total-cost').textContent = `GHC${totalCost || 0}`;
             }
         }
     </script>
