@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel 734 | Conference</title>
+    <link rel="icon" href="./images/logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: transparent;
+            color: #fff;
+            padding: 1rem 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px; /* Optimized gap */
+        }
+
+        .nav-brand img {
+            height: 45px; /* Optimized logo size */
+            width: auto;
+            object-fit: contain; /* Ensures logo scales nicely */
+        }
+
+        .nav-brand h1 {
+            font-size: 1.7rem; /* Balanced with logo */
+            font-weight: 600;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            position: relative; /* For pseudo-element */
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: white;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px; /* Underline thickness */
+            background:white; /* Matches accent color */
+            bottom: -2px; /* Position below text */
+            left: 0;
+            transition: width 0.3s ease; /* Smooth animation */
+        }
+
+        nav ul li a:hover::after {
+            width: 100%; /* Expands underline on hover */
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            margin-top: 0;
+        }
+
+        .hero-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Booking Form Section */
+        .booking-section {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 0 20px;
+        }
+
+        .booking-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #1a1a2e;
+        }
+
+        .booking-form {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a2e;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #e94560;
+            outline: none;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: #e94560;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #d32f4b;
+        }
+
+        #form-message {
+            text-align: center;
+            margin-top: 1rem;
+            color: #e94560;
+            font-weight: bold;
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a2e;
+            color: #fff;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                height: 300px;
+            }
+
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            nav ul {
+                gap: 10px;
+            }
+
+            nav ul li a {
+                font-size: 0.9rem;
+                padding: 4px 0;
+            }
+
+            .nav-brand img {
+                height: 35px; /* Smaller logo on mobile */
+            }
+
+            .nav-brand h1 {
+                font-size: 1.4rem;
+            }
+
+            .nav-brand {
+                gap: 8px; /* Smaller gap on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="nav-brand">
+                <img src="./images/logo.png" alt="Hotel 734 Logo">
+                <h1>Hotel 734</h1>
+            </div>
+            <ul>
+                <li><a href="don.html">Home</a></li>
+                <li><a href="rooms.html">Rooms</a></li>
+                <li><a href="conference.html">Conference</a></li>
+                <li><a href="compound.html">Compound</a></li>
+                <li><a href="contact_us.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Book Your Conference at Hotel 734</h2>
+            <p>Host your next event in our state-of-the-art conference room. Tailored solutions for all your business needs.</p>
+        </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section class="booking-section">
+        <h2>Conference Booking</h2>
+        <form id="booking-form" class="booking-form">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="event-date">Event Date</label>
+                <input type="date" id="event-date" name="event-date" required>
+            </div>
+            <div class="form-group">
+                <label for="attendees">Number of Attendees</label>
+                <input type="number" id="attendees" name="attendees" min="1" required>
+            </div>
+            <div class="form-group">
+                <label for="requirements">Additional Requirements</label>
+                <textarea id="requirements" name="requirements" placeholder="E.g., projector, catering, etc."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Submit Booking</button>
+        </form>
+        <p id="form-message"></p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Hotel 734. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.getElementById('booking-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const formMessage = document.getElementById('form-message');
+            const today = new Date().toISOString().split('T')[0];
+            const eventDate = form['event-date'].value;
+
+            // Basic validation for event date
+            if (eventDate < today) {
+                formMessage.textContent = 'Please select a future date for the event.';
+                formMessage.style.display = 'block';
+                return;
+            }
+
+            // Simulate form submission (replace with actual backend logic)
+            formMessage.textContent = 'Booking request submitted! We will contact you soon.';
+            formMessage.style.color = '#28a745';
+            formMessage.style.display = 'block';
+            form.reset();
+
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
