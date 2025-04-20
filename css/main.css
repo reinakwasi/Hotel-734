@@ -131,6 +131,7 @@
         justify-content: space-between;
         flex-wrap: wrap;
         align-content: space-between;
+        
     }
     .nav-menu img {
         width: 9.5em;
@@ -992,5 +993,89 @@ footer {
 
 
 
+/* Dropdown Menu Styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
 
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--color-blue);
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 4px;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 18px; /* Additional spacing */
  
+}
+
+
+.dropdown-content::before {
+    content: '';
+    position: absolute;
+    top: -18px;
+    left: 0;
+    width: 100%;
+    height: 18px;
+    background: transparent;
+}
+
+
+.dropdown-content a {
+    color: var(--color-white);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: var(--step--2);
+    font-weight: 400;
+    transition: all 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--background-30);
+    font-weight: 700;
+}
+
+
+
+/* Keep dropdown visible when hovering */
+.dropdown:hover .dropdown-content,
+.dropdown-content:hover {
+    display: block;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+.nav-manu-ul-li.dropdown-li {
+    height: auto;
+}
+
+
+.nav-manu-ul-li {
+        list-style: none;
+        display: flex;
+        position: relative;
+        margin: 0px 1.25em;
+        height: 5vh;
+    }
+/* Add a small arrow indicator */
+.dropdown-arrow {
+    display: inline-block;
+    margin-left: 5px;
+    transition: transform 0.3s;
+}
+
+.dropdown:hover .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+
+
