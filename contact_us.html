@@ -12,13 +12,10 @@
     <meta name="robots" content="nofollow">
     <meta name="copyright" content="lincensed under CC BY 4.0">
     <link rel="icon" type="image/png" href="./images/logo.png">
-    <!-- Font style: montserrat regular 400, bold 700 and cormorant garamond bold 700 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Reset css with normalize -->
     <link rel="stylesheet" href="./css/normalize.css">
-    <!-- Style sheets -->
     <link rel="stylesheet" href="./css/main.css">
     <style>
         /* Existing Inline Styles */
@@ -144,7 +141,16 @@
             text-align: center;
         }
 
-        /* New Styles for Clickable Buttons */
+        .error-message {
+            display: none;
+            background: #ff4444;
+            color: white;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 6px;
+            text-align: center;
+        }
+
         .contact-action {
             display: inline-block;
             padding: var(--space-2xs) var(--space-s);
@@ -233,7 +239,7 @@
                 </div>
             </div>
 
-            <form class="contact-form">
+            <form class="contact-form" id="contact-form">
                 <div class="form-group">
                     <label for="name">Full Name</label>
                     <input type="text" class="form-control" id="name" placeholder="John Doe" required>
@@ -252,11 +258,12 @@
                 <div class="form-group">
                     <label for="message">Your Message</label>
                     <textarea class="form-control" id="message" rows="6" 
-                              placeholder="How can we assist you?"></textarea>
+                              placeholder="How can we assist you?" required></textarea>
                 </div>
 
                 <button type="submit" class="submit-btn">Send Message</button>
-                <div class="success-message">Message sent successfully!</div>
+                <div class="success-message" id="success-message">Message sent successfully!</div>
+                <div class="error-message" id="error-message">Please fill all required fields.</div>
             </form>
         </section>
 
@@ -271,16 +278,15 @@
         </section>
     </article>
 
-  
     <footer>
         <div class="footer-contact">
             <div class="footer-left">
-            <img src="./images/logo.png" alt="Hotel 734 Logo">
+                <img src="./images/logo.png" alt="Hotel 734 Logo">
             </div>
             <p class="footer-contact-info" style="font-size: 13px;">New Edubiase, Off Bronikrom Road<br><br>+233 24 409 3821<br><br>Email: <a href="mailto:info@hotel734.com" style="text-decoration: none; font-size: 15px;">info@hotel734.com</a></p>
         </div>
-        <div class="footer-about" >
-            <ul >
+        <div class="footer-about">
+            <ul>
                 <li><a href="#content-body" style="color: #FFD700; font-size: 13px;">About Us</a></li>
                 <li><a href="don.html" style="color: #FFD700; font-size: 13px;">Home</a></li>
                 <li><a href="admin.html" style="color: #FFD700; font-size: 13px;">Admin</a></li>
@@ -313,11 +319,9 @@
                 mapLink.addEventListener('click', (e) => {
                     e.preventDefault();
                     try {
-                        // Smooth scroll with modern browsers
                         if ('scrollBehavior' in document.documentElement.style) {
                             mapSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         } else {
-                            // Fallback for older browsers
                             window.scrollTo({
                                 top: mapSection.getBoundingClientRect().top + window.pageYOffset - 50,
                                 behavior: 'auto'
@@ -330,6 +334,61 @@
             } else {
                 console.error('Map link or section not found. Ensure .map-link and #map exist in the DOM.');
             }
+
+            // Handle Contact Form Submission
+            const contactForm = document.getElementById('contact-form');
+            const successMessage = document.getElementById('success-message');
+            const errorMessage = document.getElementById('error-message');
+
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const message = document.getElementById('message').value.trim();
+
+                if (name && email && message) {
+                    const messages = JSON.parse(localStorage.getItem('contactMessages') || '[]');
+                    const newMessage = {
+                        id: messages.length + 1000, // Simple ID generation
+                        name,
+                        email,
+                        phone,
+                        message,
+                        timestamp: new Date().toISOString(),
+                        status: 'Pending'
+                    };
+
+                    messages.push(newMessage);
+                    localStorage.setItem('contactMessages', JSON.stringify(messages));
+
+                    // Show success message
+                    successMessage.style.display = 'block';
+                    errorMessage.style.display = 'none';
+                    contactForm.reset();
+
+                    // Hide success message after 3 seconds
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                    }, 3000);
+
+                    // In a real application, send the message to a backend server
+                    console.log('Message sent:', newMessage);
+                    // Example backend call (commented out):
+                    // fetch('/api/contact', {
+                    //     method: 'POST',
+                    //     headers: { 'Content-Type': 'application/json' },
+                    //     body: JSON.stringify(newMessage)
+                    // });
+                } else {
+                    errorMessage.style.display = 'block';
+                    successMessage.style.display = 'none';
+                    setTimeout(() => {
+                        errorMessage.style.display = 'none';
+                    }, 3000);
+                }
+            });
         });
     </script>
 </body>
