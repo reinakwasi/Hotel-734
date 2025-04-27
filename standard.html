@@ -32,36 +32,30 @@
             height: 100%;
         }
         .slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
 
-.slide.active {
-    opacity: 1;
-}
-.background-overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(var(--background-50), var(--background-50));
-    pointer-events: none;
-}
+        .slide.active {
+            opacity: 1;
+        }
+        .background-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(var(--background-50), var(--background-50));
+            pointer-events: none;
+        }
 
-/* .nav-menu {
-    position: relative;
-    z-index: 2;
-} */
-
-
- /* Custom Modal Styles */
- .custom-modal-overlay {
+        /* Custom Modal Styles */
+        .custom-modal-overlay {
             display: none;
             position: fixed;
             top: 0;
@@ -121,17 +115,14 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-</style>
+    </style>
 </head>
 <body>
-    
-
     <header class="header-sta">
         <div class="background-slides">
             <div class="slide active" style="background-image: url('./images/poolview2.jpg')"></div>
             <div class="slide" style="background-image: url('./images/room2.jpg')"></div>
             <div class="slide" style="background-image: url('./images/poolview1.jpg')"></div>
-            <!-- Add more slides as needed -->
         </div>
         <div class="background-overlay"></div>
         <nav class="nav-menu">
@@ -180,10 +171,8 @@
         </ul>
     </section>
 
-
-
-     <!-- Custom Modal -->
-     <div class="custom-modal-overlay" id="customModal">
+    <!-- Custom Modal -->
+    <div class="custom-modal-overlay" id="customModal">
         <div class="custom-modal">
             <span class="close-modal">&times;</span>
             <p id="modalMessage"></p>
@@ -210,7 +199,7 @@
         </div>
         <div class="footer-socials">
             <ul>
-                <li><a href="https://www.facebook.com/hotel734?mibextid=ZbWKwL"><img class="socials-facebook" src=../images/facebook_icon.png" alt="">Facebook</a></li>
+                <li><a href="https://www.facebook.com/hotel734?mibextid=ZbWKwL"><img class="socials-facebook" src="./images/facebook_icon.png" alt="">Facebook</a></li>
                 <li><a href="https://www.instagram.com/hotel.734?igsh=MWw2NXBxZ3R5a3V3YQ=="><img class="socials-instagram" src="./images/instagram_icon.png" alt="">Instagram</a></li>
             </ul>
         </div>
@@ -223,9 +212,16 @@
                 </div>
             </form>
         </div>
-    </footer>    
-
+    </footer>
+    
     <script>
+        // Room capacities (should match admin.html)
+        const ROOM_CAPACITIES = {
+            expensive: 5,
+            standard: 5,
+            regular: 5
+        };
+
         document.addEventListener('DOMContentLoaded', function() {
             // Slideshow functionality
             const slides = document.querySelectorAll('.slide');
@@ -266,23 +262,51 @@
                 }
             });
 
-            // Form validation
+            // Form validation and availability check
             const checkAvailabilityButton = document.querySelector('.btn-check-availability');
             checkAvailabilityButton.addEventListener('click', function(event) {
                 const checkIn = document.querySelector('input[name="check-in"]').value;
                 const checkOut = document.querySelector('input[name="check-out"]').value;
-                const numberOfRooms = document.querySelector('input[name="adults"]').value;
-
+                const numberOfRooms = parseInt(document.querySelector('input[name="adults"]').value);
+                
                 if (!checkIn || !checkOut || !numberOfRooms) {
                     showModal('Please complete the form before checking availability.');
                     event.preventDefault();
-                } else {
-                    const roomsAvailable = Math.random() < 0.5;
-                    if (roomsAvailable) {
-                        showModal('Rooms are available for your selected dates!');
-                    } else {
-                        showModal('Sorry, rooms are not available for your selected dates.');
+                    return;
+                }
+                
+                // Get bookings from localStorage
+                const bookings = JSON.parse(localStorage.getItem('standardBookings') || '[]');
+                
+                // Check for overlapping bookings
+                const checkInDate = new Date(checkIn);
+                const checkOutDate = new Date(checkOut);
+                
+                let overlappingBookings = 0;
+                
+                bookings.forEach(booking => {
+                    const bookingStart = new Date(booking.checkIn);
+                    const bookingEnd = new Date(booking.checkOut);
+                    
+                    if (
+                        (checkInDate >= bookingStart && checkInDate < bookingEnd) ||
+                        (checkOutDate > bookingStart && checkOutDate <= bookingEnd) ||
+                        (checkInDate <= bookingStart && checkOutDate >= bookingEnd)
+                    ) {
+                        overlappingBookings++;
                     }
+                });
+                
+                // Get room capacity
+                const roomCapacity = ROOM_CAPACITIES.standard;
+                const availableRooms = roomCapacity - overlappingBookings;
+                
+                if (availableRooms >= numberOfRooms) {
+                    showModal(`${numberOfRooms} Standard room(s) available for your selected dates!`);
+                } else if (availableRooms > 0) {
+                    showModal(`Only ${availableRooms} Standard room(s) available for your selected dates.`);
+                } else {
+                    showModal('No Standard rooms available for your selected dates.');
                 }
             });
         });

@@ -68,10 +68,41 @@
         .pending { background: #fff8e5; color: #a05e03; }
         .cancelled { background: #fde7e9; color: #d12929; }
 
+        /* Room Availability Section */
+        .availability-container { 
+            background: white; border-radius: 10px; padding: 20px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 30px;
+        }
+        .availability-container h2 { 
+            font-family: 'Montserrat', sans-serif; font-weight: 700; 
+            font-size: 24px; color: #FFD700; margin-bottom: 15px;
+        }
+        .availability-cards {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;
+        }
+        .availability-card {
+            background: #f8f9fa; padding: 15px; border-radius: 8px;
+            border-left: 4px solid #FFD700;
+        }
+        .availability-card h3 {
+            font-size: 18px; color: #1a233b; margin-bottom: 10px;
+        }
+        .availability-card p {
+            font-size: 14px; color: #666;
+        }
+        .availability-card .progress {
+            height: 10px; background: #e0e0e0; border-radius: 5px;
+            margin: 10px 0;
+        }
+        .availability-card .progress-bar {
+            height: 100%; background: #FFD700; border-radius: 5px;
+        }
+
         @media (max-width: 768px) {
             .sidebar { width: 200px; }
             .main-content { margin-left: 200px; width: calc(100% - 200px); }
             .stats-container { grid-template-columns: repeat(2, 1fr); }
+            .availability-cards { grid-template-columns: 1fr; }
             .header h1 { font-size: 24px; }
             .bookings-table h2 { font-size: 20px; }
             th, td { font-size: 14px; }
@@ -138,6 +169,34 @@
             </div>
         </div>
 
+        <!-- Room Availability Section -->
+        <div class="availability-container">
+            <h2>Room Availability</h2>
+            <div class="availability-cards">
+                <div class="availability-card">
+                    <h3>Expensive Rooms</h3>
+                    <div class="progress">
+                        <div class="progress-bar" id="expensive-progress" style="width: 100%"></div>
+                    </div>
+                    <p id="expensive-availability">5 of 5 available</p>
+                </div>
+                <div class="availability-card">
+                    <h3>Standard Rooms</h3>
+                    <div class="progress">
+                        <div class="progress-bar" id="standard-progress" style="width: 100%"></div>
+                    </div>
+                    <p id="standard-availability">5 of 5 available</p>
+                </div>
+                <div class="availability-card">
+                    <h3>Regular Rooms</h3>
+                    <div class="progress">
+                        <div class="progress-bar" id="regular-progress" style="width: 100%"></div>
+                    </div>
+                    <p id="regular-availability">5 of 5 available</p>
+                </div>
+            </div>
+        </div>
+
         <!-- Bookings Table -->
         <div class="bookings-table">
             <h2 id="table-title">Recent Bookings</h2>
@@ -160,9 +219,14 @@
 
     <script>
         // Hard-coded credentials (CHANGE THESE)
-        const ADMIN_USERNAME = 'admin'; // Replace with your unique username
+        const ADMIN_USERNAME = 'admin'; // Replace with your unique username    
         const ADMIN_PASSWORD = 'hotel734secret'; // Replace with your unique password
         const CURRENT_DATE = new Date('2025-03-31'); // System date for demo
+        const ROOM_CAPACITIES = {
+            expensive: 5,
+            standard: 5,
+            regular: 5
+        };
         let currentSection = 'dashboard';
 
         if (localStorage.getItem('isLoggedIn') === 'true') {
@@ -219,9 +283,10 @@
                 headerTitle.textContent = 'Dashboard Overview';
                 tableTitle.textContent = 'Recent Bookings';
                 newBookingBtn.style.display = 'inline-block';
-                newBookingBtn.onclick = () => window.open('roomsbooking.html', '_blank'); // Generic booking page
+                newBookingBtn.onclick = () => window.open('roomsbooking.html', '_blank');
                 loadDashboardStats();
                 loadRecentBookings();
+                updateRoomAvailability();
             } else if (section === 'compound' || section === 'conference') {
                 headerTitle.textContent = `${section.charAt(0).toUpperCase() + section.slice(1)} Bookings`;
                 tableTitle.textContent = `Recent ${section.charAt(0).toUpperCase() + section.slice(1)} Bookings`;
@@ -240,6 +305,26 @@
             const allBookings = ['expensive', 'standard', 'regular', 'compound', 'conference'].flatMap(type => 
                 JSON.parse(localStorage.getItem(`${type}Bookings`) || '[]')
             );
+            
+            // Calculate active bookings for each room type
+            const activeBookingsByType = {
+                expensive: 0,
+                standard: 0,
+                regular: 0
+            };
+            
+            allBookings.forEach(booking => {
+                const type = booking.roomType?.toLowerCase();
+                if (type && ['expensive', 'standard', 'regular'].includes(type)) {
+                    if (new Date(booking.checkOut) >= CURRENT_DATE) {
+                        activeBookingsByType[type]++;
+                    }
+                }
+            });
+            
+            // Store this data for other pages to access
+            localStorage.setItem('roomAvailability', JSON.stringify(activeBookingsByType));
+            
             const totalBookings = allBookings.length;
             const activeBookings = allBookings.filter(b => new Date(b.checkOut || b.eventDateEnds) >= CURRENT_DATE).length;
             const totalRevenue = allBookings.reduce((sum, b) => sum + (parseFloat(b.amount.replace('GHC', '')) || 0), 0);
@@ -249,6 +334,31 @@
             document.getElementById('occupancy-rate').textContent = `${Math.round((activeBookings / 40) * 100)}%`; // Assuming 40 rooms
             document.getElementById('revenue').textContent = `GHC${totalRevenue.toFixed(2)}`;
             document.getElementById('pending-actions').textContent = pendingActions;
+        }
+
+        function updateRoomAvailability() {
+            const availability = JSON.parse(localStorage.getItem('roomAvailability') || '{}');
+            
+            // Update Expensive rooms
+            const expensiveAvailable = ROOM_CAPACITIES.expensive - (availability.expensive || 0);
+            const expensivePercent = (expensiveAvailable / ROOM_CAPACITIES.expensive) * 100;
+            document.getElementById('expensive-progress').style.width = `${expensivePercent}%`;
+            document.getElementById('expensive-availability').textContent = 
+                `${expensiveAvailable} of ${ROOM_CAPACITIES.expensive} available`;
+            
+            // Update Standard rooms
+            const standardAvailable = ROOM_CAPACITIES.standard - (availability.standard || 0);
+            const standardPercent = (standardAvailable / ROOM_CAPACITIES.standard) * 100;
+            document.getElementById('standard-progress').style.width = `${standardPercent}%`;
+            document.getElementById('standard-availability').textContent = 
+                `${standardAvailable} of ${ROOM_CAPACITIES.standard} available`;
+            
+            // Update Regular rooms
+            const regularAvailable = ROOM_CAPACITIES.regular - (availability.regular || 0);
+            const regularPercent = (regularAvailable / ROOM_CAPACITIES.regular) * 100;
+            document.getElementById('regular-progress').style.width = `${regularPercent}%`;
+            document.getElementById('regular-availability').textContent = 
+                `${regularAvailable} of ${ROOM_CAPACITIES.regular} available`;
         }
 
         function loadRecentBookings() {
@@ -289,6 +399,9 @@
             const bookings = JSON.parse(localStorage.getItem(`${type}Bookings`) || '[]');
             bookings.push(booking);
             localStorage.setItem(`${type}Bookings`, JSON.stringify(bookings));
+            if (['expensive', 'standard', 'regular'].includes(type)) {
+                updateRoomAvailability();
+            }
         }
 
         // Sample data for testing

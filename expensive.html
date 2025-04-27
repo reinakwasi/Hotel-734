@@ -223,6 +223,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
     <script>
+        // Room capacities (should match admin.html)
+        const ROOM_CAPACITIES = {
+            expensive: 5,
+            standard: 5,
+            regular: 5
+        };
+
         document.addEventListener('DOMContentLoaded', function() {
             // Slideshow functionality
             const slides = document.querySelectorAll('.slide');
@@ -263,23 +270,51 @@
                 }
             });
 
-            // Form validation
+            // Form validation and availability check
             const checkAvailabilityButton = document.querySelector('.btn-check-availability');
             checkAvailabilityButton.addEventListener('click', function(event) {
                 const checkIn = document.querySelector('input[name="check-in"]').value;
                 const checkOut = document.querySelector('input[name="check-out"]').value;
-                const numberOfRooms = document.querySelector('input[name="adults"]').value;
-
+                const numberOfRooms = parseInt(document.querySelector('input[name="adults"]').value);
+                
                 if (!checkIn || !checkOut || !numberOfRooms) {
                     showModal('Please complete the form before checking availability.');
                     event.preventDefault();
-                } else {
-                    const roomsAvailable = Math.random() < 0.5;
-                    if (roomsAvailable) {
-                        showModal('Rooms are available for your selected dates!');
-                    } else {
-                        showModal('Sorry, rooms are not available for your selected dates.');
+                    return;
+                }
+                
+                // Get bookings from localStorage
+                const bookings = JSON.parse(localStorage.getItem('expensiveBookings') || '[]');
+                
+                // Check for overlapping bookings
+                const checkInDate = new Date(checkIn);
+                const checkOutDate = new Date(checkOut);
+                
+                let overlappingBookings = 0;
+                
+                bookings.forEach(booking => {
+                    const bookingStart = new Date(booking.checkIn);
+                    const bookingEnd = new Date(booking.checkOut);
+                    
+                    if (
+                        (checkInDate >= bookingStart && checkInDate < bookingEnd) ||
+                        (checkOutDate > bookingStart && checkOutDate <= bookingEnd) ||
+                        (checkInDate <= bookingStart && checkOutDate >= bookingEnd)
+                    ) {
+                        overlappingBookings++;
                     }
+                });
+                
+                // Get room capacity
+                const roomCapacity = ROOM_CAPACITIES.expensive;
+                const availableRooms = roomCapacity - overlappingBookings;
+                
+                if (availableRooms >= numberOfRooms) {
+                    showModal(`${numberOfRooms} Expensive room(s) available for your selected dates!`);
+                } else if (availableRooms > 0) {
+                    showModal(`Only ${availableRooms} Expensive room(s) available for your selected dates.`);
+                } else {
+                    showModal('No Expensive rooms available for your selected dates.');
                 }
             });
         });
