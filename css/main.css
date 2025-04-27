@@ -433,29 +433,36 @@
     }
     .article-section-gallery {
         min-height: 100vh;
+        padding: 2rem 0;
     }
     
     
-
 
 
 
 
     .article-section-gallery-div {
-        display: flex;
-        flex-direction: column; /* Keeps the original vertical arrangement */
-        align-items: center; /* Centers the images horizontally */
-        margin: 10px; /* Adjust as needed */
+        display: grid;
+        gap: 2rem;
+        padding: 0 2rem;
+        
+        
     }
+    
     
     .gallery-item {
-        position: relative; /* Required for absolute positioning of the caption */
-        margin-bottom: 20px; /* Adds spacing between images */
-        text-align: center; /* Centers the image and caption */
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        /* width: var(--space-19xl); */
+        width: 100%;
+        margin: 0 auto 2rem;
+        max-width: 1200px;
     }
-    
+
     .gallery-item img {
-        width: var(--space-19xl); /* Keeps the original width */
+        width: var(--space-19xl); 
         height: auto; /* Maintains aspect ratio */
         display: block; /* Ensures the image is a block element */
     }
@@ -489,24 +496,30 @@
         text-align: center;
     }
     
+    
+    
     .image-carousel {
         position: relative;
-        width: var(--space-19xl); /* Match your image width */
-        height: auto; /* Adjust based on your image height */
-        overflow: hidden; /* Hide overflow images */
+        width: 100%;
+        padding-top: 56.25%; /* 16:9 aspect ratio */
     }
     
     .image-carousel img {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
-        height: auto;
-        display: none; /* Hide all images by default */
-        transition: opacity 0.5s ease; /* Smooth transition */
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
     }
     
     .image-carousel img.active {
-        display: block; /* Show the active image */
+        opacity: 1;
     }
-
+    
+    
 
 
 
