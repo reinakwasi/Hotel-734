@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOTEL 734 | Contact</title>
+    <meta name="keywords" content="Luxury Hotels">
+    <meta name="author" content="Ayokunle for web site disign from Figma community">
+    <meta name="author" content="Francisco Cienfuegos for web site development">
+    <meta name="copyright" content="Design from Figma community">
+    <meta name="robots" content="nofollow">
+    <meta name="copyright" content="lincensed under CC BY 4.0">
+    <link rel="icon" type="image/png" href="./images/logo.png">
+    <!-- Font style: montserrat regular 400, bold 700 and cormorant garamond bold 700 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Reset css with normalize -->
+    <link rel="stylesheet" href="./css/normalize.css">
+    <!-- Style sheets -->
+    <link rel="stylesheet" href="./css/main.css">
+    <style>
+        /* Existing Inline Styles */
+        .header-contactus {
+            background: linear-gradient(rgba(20, 39, 74, 0.8), rgba(20, 39, 74, 0.8)),
+                        url(./images/contact-bg.jpg) center/cover;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .section-header-copy-contactus h1 {
+            color: #fff;
+            font-size: 3.5rem;
+            letter-spacing: 3px;
+            margin-bottom: 1.5rem;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-info {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .contact-card {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f8f8f8;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--color-yellow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+        }
+
+        .contact-form {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--color-blue);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--color-yellow);
+            outline: none;
+        }
+
+        .submit-btn {
+            background: var(--color-yellow);
+            color: #fff;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #c89d4c;
+        }
+
+        .map-container {
+            margin-top: 3rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .success-message {
+            display: none;
+            background: #4CAF50;
+            color: white;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        /* New Styles for Clickable Buttons */
+        .contact-action {
+            display: inline-block;
+            padding: var(--space-2xs) var(--space-s);
+            background: var(--color-yellow);
+            color: var(--color-white);
+            border-radius: 6px;
+            text-decoration: none;
+            font-family: var(--font-montserrat);
+            font-size: var(--step--1);
+            font-weight: 700;
+            margin-top: var(--space-2xs);
+            transition: background 0.3s;
+        }
+
+        .contact-action:hover {
+            background: var(--color-blue);
+        }
+
+        .section-body-contactus-box-celmail a {
+            margin-right: var(--space-xs);
+        }
+    </style>
+</head>
+<body>
+    <header class="header-contactus">
+        <nav class="nav-menu">
+            <a href="don.html"><img src="./images/logo.png" alt="734"></a>
+            <ul>
+                <li class="nav-manu-ul-li"><a href="don.html">Home</a></li>
+                <li class="nav-manu-ul-li"><a href="facilities.html">Facilities</a></li>
+                <li class="nav-manu-ul-li"><a href="rooms.html">Rooms</a></li>
+                <li class="nav-manu-ul-li dropdown">
+                    <a href="#">Meetings & Events <span class="dropdown-arrow">▼</span></a>
+                    <div class="dropdown-content">
+                        <a href="conference.html">Conference</a>
+                        <a href="compound.html">Event Booking</a>
+                    </div>
+                </li>
+                <li class="list-style list-style::after"><a class="a-text-style" href="#">Contact Us</a></li>
+            </ul>
+        </nav>
+        <section class="section-header-copy-contactus">
+            <h1>Get in Touch</h1>
+            <div class="divider">
+                <div class="line"></div>
+                <div class="square"></div>
+                <div class="line"></div>
+            </div>
+        </section>
+    </header>
+
+    <article id="content-body">
+        <section class="contact-container">
+            <div class="contact-info">
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        📍
+                    </div>
+                    <div>
+                        <h3>Visit Us</h3>
+                        <p>New Edubiase<br>Off Bronikrom Road</p>
+                        <a href="#map" class="map-link">View on Map →</a>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        📞
+                    </div>
+                    <div>
+                        <h3>Call Us</h3>
+                        <p>24/7 Support</p>
+                        <a href="tel:+233244093821" class="contact-action">+233 24 409 3821</a>
+                    </div>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        ✉️
+                    </div>
+                    <div>
+                        <h3>Email Us</h3>
+                        <p>Response within 24hrs</p>
+                        <a href="mailto:info@hotel734.com" class="contact-action">info@hotel734.com</a>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="John Doe" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" class="form-control" id="email" placeholder="john@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" class="form-control" id="phone" placeholder="+233 24 000 0000">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea class="form-control" id="message" rows="6" 
+                              placeholder="How can we assist you?"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Send Message</button>
+                <div class="success-message">Message sent successfully!</div>
+            </form>
+        </section>
+
+        <section id="map" class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.4413703822675!2d-1.3758874251980755!3d6.071062493914956!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdc2323c15fe4c9%3A0xe8201951e063217e!2sHOTEL%20734%20New%20Edubiase!5e0!3m2!1sen!2sgh!4v1745766381134!5m2!1sen!2sgh"  
+                    width="100%" 
+                    height="450" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+            </iframe>
+        </section>
+    </article>
+
+    <footer>
+        <div class="footer-contact">
+            <div class="footer-left">
+                <img src="./images/logo.png" alt="Hotel 734 Logo">
+            </div>
+            <p>New Edubiase, Off Bronikrom Road<br>
+               <a href="tel:+233244093821">+233 24 409 3821</a><br>
+               <a href="mailto:info@hotel734.com">info@hotel734.com</a></p>
+        </div>
+        <div class="footer-about">
+            <ul>
+                <li>About Us</li>
+                <li>Contact</li>
+                <li>Terms & Conditions</li>
+            </ul>
+        </div>
+        <div class="footer-socials">
+            <ul>
+                <li><img class="socials-facebook" src="./images/facebook_icon.png" alt="">Facebook</li>
+                <li><img class="socials-instagram" src="./images/instagram_icon.png" alt="">Instagram</li>
+            </ul>
+        </div>
+        <div class="footer-form">
+            <p>Subscribe to our newsletter</p>
+            <form>
+                <div class="footer-form-container">
+                    <input class="footer-form-mail" type="email" placeholder="Enter Your Email">
+                    <input class="footer-form-ok" type="submit" value="OK">
+                </div>
+            </form>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth Scroll for Map Link
+        document.addEventListener('DOMContentLoaded', () => {
+            const mapLink = document.querySelector('.map-link');
+            const mapSection = document.querySelector('#map');
+
+            if (mapLink && mapSection) {
+                mapLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    try {
+                        // Smooth scroll with modern browsers
+                        if ('scrollBehavior' in document.documentElement.style) {
+                            mapSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        } else {
+                            // Fallback for older browsers
+                            window.scrollTo({
+                                top: mapSection.getBoundingClientRect().top + window.pageYOffset - 50,
+                                behavior: 'auto'
+                            });
+                        }
+                    } catch (error) {
+                        console.error('Scroll error:', error);
+                    }
+                });
+            } else {
+                console.error('Map link or section not found. Ensure .map-link and #map exist in the DOM.');
+            }
+        });
+    </script>
+</body>
+</html>
