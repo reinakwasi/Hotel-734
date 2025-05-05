@@ -2,279 +2,585 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOTEL 734 | Facilities</title>
-    <meta name="keywords" content="Luxury Hotels">
-    <meta name="author" content="Ayokunle for web site design from Figma community">
-    <meta name="author" content="Francisco Cienfuegos for web site development">
-    <meta name="copyright" content="Design from Figma community">
-    <meta name="robots" content="nofollow">
-    <meta name="copyright" content="licensed under CC BY 4.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/normalize.css">
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="icon" type="image/png" href="./images/logo.png">
+    <title>Hotel 734 | Conference</title>
+    <link rel="icon" href="./images/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
-        /* Animation Keyframes */
-        @keyframes fadeInScale {
-            0% { opacity: 0; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1); }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
         }
 
-        @keyframes pulseGlow {
-            0% { transform: scale(1); box-shadow: 0 0 0 rgba(224, 185, 115, 0); }
-            50% { transform: scale(1.1); box-shadow: 0 0 10px rgba(224, 185, 115, 0.8); }
-            100% { transform: scale(1); box-shadow: 0 0 0 rgba(224, 185, 115, 0); }
+        body {
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        @keyframes slideUpGlow {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
+        /* Header */
+        header {
+            background: transparent;
+            color: #fff;
+            padding: 1rem 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            transition: all 0.5s ease;
         }
 
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+        header.scrolled {
+            background: rgba(26, 26, 46, 0.95);
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
-        @keyframes slideInRight {
-            0% { opacity: 0; transform: translateX(var(--space-m)); }
-            100% { opacity: 1; transform: translateX(0); }
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
         }
 
-        @keyframes glow {
-            0% { box-shadow: 0 0 0 rgba(224, 185, 115, 0); }
-            100% { box-shadow: 0 0 15px rgba(224, 185, 115, 0.8); }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: transform 0.3s ease;
         }
 
-        /* Header Animations */
-        .nav-menu {
-            opacity: 0;
-            animation: fadeIn 1s ease-out forwards;
+        .nav-brand:hover {
+            transform: scale(1.03);
         }
 
-        .section-header-copy {
-            opacity: 0;
-            animation: fadeInScale 1s ease-out forwards;
+        .nav-brand img {
+            height: 45px;
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.5s ease;
         }
 
-        .section-header-copy p {
-            animation: fadeInScale 1s ease-out forwards;
-            animation-delay: 0.3s;
+        .nav-brand:hover img {
+            transform: rotate(5deg);
         }
 
-        .section-header-copy h1 {
-            animation: fadeInScale 1s ease-out forwards;
-            animation-delay: 0.6s;
-        }
-
-        .section-header-copy h2 {
-            animation: fadeInScale 1s ease-out forwards;
-            animation-delay: 0.9s;
-        }
-
-        .section-header-CTA-button {
-            opacity: 0;
-            animation: slideUpGlow 1s ease-out forwards;
-            animation-delay: 1.2s;
-        }
-
-        .section-header-CTA-button:hover {
-            box-shadow: 0 0 15px rgba(224, 185, 115, 0.8);
-            transform: scale(1.05);
+        .nav-brand h1 {
+            font-size: 1.7rem;
+            font-weight: 600;
+            background: linear-gradient(to right, #fff, #e0e0e0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
             transition: all 0.3s ease;
         }
 
-        .CTA-scroll-animate img {
-            animation: pulseGlow 3s infinite ease-in-out;
+        .nav-brand:hover h1 {
+            background: linear-gradient(to right, #fff, #1E90FF);
         }
 
-        /* Footer Animations */
-        .triangule-footer {
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            position: relative;
+            padding: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #1E90FF;
+            transform: translateY(-2px);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #1E90FF;
+            bottom: -2px;
+            left: 0;
+            transition: width 0.3s ease, background 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            margin-top: 0;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .hero-content {
+            transform: translateY(20px);
             opacity: 0;
-            animation: fadeIn 1s ease-out forwards;
-            animation-delay: 0.8s;
+            animation: slideUp 1s ease-out 0.3s forwards;
         }
 
+        .hero-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Booking Form Section */
+        .booking-section {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 0 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.6s forwards;
+        }
+
+        .booking-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #1a1a2e;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .booking-section h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(to right, #1E90FF, transparent);
+            bottom: -10px;
+            left: 25%;
+            border-radius: 3px;
+            animation: expandLine 1.5s ease-out 1s forwards;
+            transform-origin: left;
+            transform: scaleX(0);
+        }
+
+        .booking-form {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .booking-form:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: #1a1a2e;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #1E90FF;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: #1E90FF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            background: #0066cc;
+            transform: translateY(-2px);
+        }
+
+        .submit-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        .submit-btn:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+
+        #form-message {
+            text-align: center;
+            margin-top: 1rem;
+            color: #e94560;
+            font-weight: bold;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        /* Footer */
         footer {
-            opacity: 0;
-            animation: slideInRight 1.2s ease-out forwards;
-            animation-delay: 1s;
+            background: #1a1a2e;
+            color: #fff;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        .footer-contact,
-        .footer-about,
-        .footer-socials,
-        .footer-form {
-            opacity: 0;
-            animation: slideInRight 1s ease-out forwards;
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(to right, #1E90FF, #e94560, #1E90FF);
+            animation: gradientBG 5s ease infinite;
+            background-size: 200% 200%;
         }
 
-        .footer-contact { animation-delay: 1.2s; }
-        .footer-about { animation-delay: 1.4s; }
-        .footer-socials { animation-delay: 1.6s; }
-        .footer-form { animation-delay: 1.8s; }
-
-        .footer-about ul li a:hover,
-        .footer-socials ul li a:hover {
-            animation: glow 0.5s ease forwards;
-            color: var(--color-white);
+        footer p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            transition: all 0.3s ease;
         }
 
-        /* Responsive Adjustments */
+        footer:hover p {
+            opacity: 1;
+            transform: scale(1.02);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to { 
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes expandLine {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 1;
+            }
+            20% {
+                transform: scale(25, 25);
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: scale(40, 40);
+            }
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Floating elements animation */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-menu,
-            .section-header-copy,
-            .section-header-copy p,
-            .section-header-copy h1,
-            .section-header-copy h2,
-            .section-header-CTA-button,
-            .triangule-footer,
-            footer,
-            .footer-contact,
-            .footer-about,
-            .footer-socials,
-            .footer-form {
-                animation-duration: 0.8s; /* Faster for mobile */
+            .hero {
+                height: 300px;
+            }
+
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            nav ul {
+                gap: 10px;
+            }
+
+            nav ul li a {
+                font-size: 0.9rem;
+                padding: 4px 0;
+            }
+
+            .nav-brand img {
+                height: 35px;
+            }
+
+            .nav-brand h1 {
+                font-size: 1.4rem;
+            }
+
+            .nav-brand {
+                gap: 8px;
+            }
+            
+            .booking-section h2::after {
+                width: 80%;
+                left: 10%;
             }
         }
     </style>
 </head>
 <body>
-    <header class="header-facilities">
-        <nav class="nav-menu">
-            <a href="don.html"><img src="./images/logo.png" alt="Hotel 734 Logo"></a>
+    <!-- Header -->
+    <header id="main-header">
+        <nav>
+            <div class="nav-brand">
+                <img src="./images/logo.png" alt="Hotel 734 Logo" class="floating">
+                <h1>Hotel 734</h1>
+            </div>
             <ul>
-                <li class="nav-manu-ul-li"><a href="don.html">Home</a></li>
-                <li class="list-style list-style::after"><a class="a-text-style" href="facilities.html">Facilities</a></li>
-                <li class="nav-manu-ul-li"><a href="rooms.html">Rooms</a></li>
-                <li class="nav-manu-ul-li dropdown">
-                    <a href="#">Meetings & Events <span class="dropdown-arrow">▼</span></a>
-                    <div class="dropdown-content">
-                        <a href="conference.html">Conference</a>
-                        <a href="compound.html">Event Booking</a>
-                    </div>
-                </li>
-                <li class="nav-manu-ul-li"><a href="contact_us.html">Contact-us</a></li>
+                <li><a href="don.html">Home</a></li>
+                <li><a href="rooms.html">Rooms</a></li>
+                <li><a href="compound.html">Compound</a></li>
+                <li><a href="contact_us.html">Contact</a></li>
             </ul>
         </nav>
-        <section class="section-header-copy">
-            <p>Discover the Exceptional Facilities at</p>
-            <h1 class="section-header-copy-h1">HOTEL</h1>
-            <h2>734</h2>
-        </section>
-        <section class="section-header-CTA">
-           
-            <a href="#content-body" class="CTA-scroll-text">scroll</a>
-            <a href="#content-body" class="CTA-scroll-animate"><img src="./images/down_scroll.png" alt="Scroll Down"></a>
-        </section>
     </header>
-    <article id="content-body">
-        <section class="article-section-copy">
-            <h2>FACILITIES</h2>
-            <p>We want your stay at our lush hotel to be truly unforgettable.  That is why we give special attention to all of your needs so<br>that we can ensure an experience quite uniquw. Luxury hotels offers the perfect setting with stunning views for leisure<br>and our modern luxury resort facilities will help you enjoy the best of all. </p>
-        </section>
-        <section class="article-section-gallery">
-            <div class="article-section-gallery-div">
-                <!-- Hotel View -->
-                <figure class="gallery-item">
-                    <div class="image-carousel">
-                        <img src="./images/one.jpg" alt="Hotel View 1" class="active">
-                        <img src="./images/two.jpg" alt="Hotel View 2">
-                        <img src="./images/three.jpg" alt="Hotel View 3">
-                    </div>
-                    <figcaption class="gallery-caption">Hotel View</figcaption>
-                </figure>
-                <!-- Swimming Pool -->
-                <figure class="gallery-item">
-                    <div class="image-carousel">
-                        <img src="./images/pool.jpg" alt="Swimming Pool 1" class="active">
-                        <img src="./images/poolview1.jpg" alt="Swimming Pool 2">
-                        <img src="./images/poolview2.jpg" alt="Swimming Pool 3">
-                    </div>
-                    <figcaption class="gallery-caption">Swimming Pool</figcaption>
-                </figure>
-                <figure class="gallery-item">
-                    <div class="image-carousel">
-                        <img src="./images/pool.jpg" alt="Swimming Pool 1" class="active">
-                        <img src="./images/poolview1.jpg" alt="Swimming Pool 2">
-                        <img src="./images/poolview2.jpg" alt="Swimming Pool 3">
-                    </div>
-                    <figcaption class="gallery-caption">Conference Center</figcaption>
-                </figure>
-                <figure class="gallery-item">
-                    <div class="image-carousel">
-                        <img src="./images/pool.jpg" alt="Swimming Pool 1" class="active">
-                        <img src="./images/poolview1.jpg" alt="Swimming Pool 2">
-                        <img src="./images/poolview2.jpg" alt="Swimming Pool 3">
-                    </div>
-                    <figcaption class="gallery-caption">Night Club</figcaption>
-                </figure>
-                <figure class="gallery-item">
-                    <div class="image-carousel">
-                        <img src="./images/pool.jpg" alt="Swimming Pool 1" class="active">
-                        <img src="./images/poolview1.jpg" alt="Swimming Pool 2">
-                        <img src="./images/poolview2.jpg" alt="Swimming Pool 3">
-                    </div>
-                    <figcaption class="gallery-caption">Dining Hall</figcaption>
-                </figure>
-            </div>
-        </section>
-    </article>
-    <div class="triangule-footer">
-        <img src="./images/triangule.svg" alt="Triangle Footer Decoration">
-    </div>
-    <footer>
-        <div class="footer-contact">
-            <div class="footer-left">
-                <img src="./images/logo.png" alt="Hotel 734 Logo">
-            </div>
-            <p style="font-size: 13px;">New Edubiase, Off Bronikrom Road<br><br>+233 24 409 3821<br><br>Email: <a href="mailto:info@hotel734.com" style="text-decoration: none; font-size: 15px;">info@hotel734.com</a></p>
-        </div>
-        <div class="footer-about">
-            <ul>
-                <li><a href="don.html" style="color: #FFD700; font-size: 13px;">About Us</a></li>
-                <li><a href="contact_us.html" style="color: #FFD700; font-size: 13px;">Contact</a></li>
-                <li><a href="admin.html" style="color: #FFD700; font-size: 13px;">Admin</a></li>
-            </ul>
-        </div>
-        <div class="footer-socials">
-            <ul>
-                <li><a href="https://www.facebook.com/hotel734?mibextid=ZbWKwL" style="font-size: 13px;"><img class="socials-facebook" src="./images/facebook_icon.png" alt="Facebook Icon">Facebook</a></li>
-                <li><a href="https://www.instagram.com/hotel.734?igsh=MWw2NXBxZ3R5a3V3YQ==" style="font-size: 13px;"><img class="socials-instagram" src="./images/instagram_icon.png" alt="Instagram Icon">Instagram</a></li>
-            </ul>
-        </div>
-        <div class="footer-form">
-            <p>Subscribe to our newsletter</p>
-            <form>
-                <div class="footer-form-container">
-                    <input class="footer-form-mail" type="email" placeholder="Email Address">
-                    <input class="footer-form-ok" type="submit" value="OK">
-                </div>
-            </form>
-        </div>
-    </footer>
-    <script src="carousel.js"></script>
-    <script>
-        // Intersection Observer for Header and Footer Animations
-        const elements = document.querySelectorAll('.nav-menu, .section-header-copy, .section-header-copy p, .section-header-copy h1, .section-header-copy h2, .section-header-CTA-button, .triangule-footer, footer, .footer-contact, .footer-about, .footer-socials, .footer-form');
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.animationPlayState = 'running';
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Book Your Conference at Hotel 734</h2>
+            <p>Host your next event in our state-of-the-art conference room. Tailored solutions for all your business needs.</p>
+        </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section class="booking-section">
+        <h2>Conference Booking</h2>
+        <form id="booking-form" class="booking-form">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="event-date">Event Date</label>
+                <input type="date" id="event-date" name="event-date" required>
+            </div>
+            <div class="form-group">
+                <label for="attendees">Number of Attendees</label>
+                <input type="number" id="attendees" name="attendees" min="1" required>
+            </div>
+            <div class="form-group">
+                <label for="requirements">Additional Requirements</label>
+                <textarea id="requirements" name="requirements" placeholder="E.g., projector, catering, etc."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Submit Booking</button>
+        </form>
+        <p id="form-message"></p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Hotel 734. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Form submission with animation
+        document.getElementById('booking-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const form = event.target;
+            const formMessage = document.getElementById('form-message');
+            const today = new Date().toISOString().split('T')[0];
+            const eventDate = form['event-date'].value;
+
+            // Basic validation for event date
+            if (eventDate < today) {
+                formMessage.textContent = 'Please select a future date for the event.';
+                formMessage.style.color = '#e94560';
+                formMessage.style.display = 'block';
+                
+                // Shake animation for error
+                form.style.animation = 'shake 0.5s';
+                setTimeout(() => {
+                    form.style.animation = '';
+                }, 500);
+                return;
+            }
+
+            // Simulate form submission (replace with actual backend logic)
+            formMessage.textContent = 'Booking request submitted! We will contact you soon.';
+            formMessage.style.color = '#28a745';
+            formMessage.style.display = 'block';
+            
+            // Confetti effect on success
+            if (window.confetti) {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }
+            
+            // Form reset with delay
+            setTimeout(() => {
+                form.reset();
+                formMessage.style.display = 'none';
+            }, 3000);
+        });
+
+        // Add shake animation dynamically
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+                20%, 40%, 60%, 80% { transform: translateX(5px); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Input focus effects
+        document.querySelectorAll('.form-group input, .form-group textarea').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.querySelector('label').style.color = '#1E90FF';
+                this.parentElement.querySelector('label').style.transform = 'translateY(-5px)';
+            });
+            
+            input.addEventListener('blur', function() {
+                if (!this.value) {
+                    this.parentElement.querySelector('label').style.color = '#1a1a2e';
+                    this.parentElement.querySelector('label').style.transform = 'translateY(0)';
                 }
             });
-        }, { threshold: 0.2 });
-
-        elements.forEach(element => {
-            observer.observe(element);
-            element.style.opacity = '0'; // Start hidden
         });
     </script>
+    
+    <!-- Confetti library for successful submission -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
 </body>
 </html>
