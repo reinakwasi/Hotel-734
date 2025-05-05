@@ -5,13 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel 734 | rooms</title>
-    <meta name="keywords" content="Luxury Hotels">
-    <meta name="author" content="Ayokunle for web site disign from Figma community">
-    <meta name="author" content="Francisco Cienfuegos for web site development">
-    <meta name="copyright" content="Design from Figma community">
-    <meta name="robots" content="nofollow">
-    <meta name="copyright" content="lincensed under CC BY 4.0">
-    <!-- Font style: montserrat regular 400, bold 700 and cormorant garamond bold 700 -->
+ 
     <link rel="icon" type="image/png" href="./images/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,6 +14,131 @@
     <link rel="stylesheet" href="./css/normalize.css">
     <!-- Style sheets -->
     <link rel="stylesheet" href="./css/main.css">
+    
+    <!-- Internal CSS for Animations -->
+    <style>
+        /* Animation Keyframes */
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 rgba(224, 185, 115, 0); /* --color-yellow */
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 0 10px rgba(224, 185, 115, 0.8);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 rgba(224, 185, 115, 0);
+            }
+        }
+
+        @keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(var(--space-m));
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes glow {
+            0% {
+                box-shadow: 0 0 0 rgba(224, 185, 115, 0); /* --color-yellow */
+            }
+            100% {
+                box-shadow: 0 0 15px rgba(224, 185, 115, 0.8);
+            }
+        }
+
+        /* Header Animations */
+        .section-header-copy {
+            opacity: 0;
+            animation: fadeInScale 1s ease-out forwards;
+        }
+
+        .section-header-copy p {
+            animation: fadeInScale 1s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+
+        .section-header-copy h1 {
+            animation: fadeInScale 1s ease-out forwards;
+            animation-delay: 0.6s;
+        }
+
+        .section-header-copy h2 {
+            animation: fadeInScale 1s ease-out forwards;
+            animation-delay: 0.9s;
+        }
+
+        .section-header-copy h3 {
+            animation: fadeInScale 1s ease-out forwards;
+            animation-delay: 1.2s;
+        }
+
+        .CTA-scroll-animate img {
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+
+        /* Footer Animations */
+        footer {
+            opacity: 0;
+            animation: slideInRight 1.2s ease-out forwards;
+            animation-delay: 1s;
+        }
+
+        .footer-contact,
+        .footer-about,
+        .footer-socials,
+        .footer-form {
+            opacity: 0;
+            animation: slideInRight 1s ease-out forwards;
+        }
+
+        .footer-contact { animation-delay: 1.2s; }
+        .footer-about { animation-delay: 1.4s; }
+        .footer-socials { animation-delay: 1.6s; }
+        .footer-form { animation-delay: 1.8s; }
+
+        .footer-about ul li a:hover,
+        .footer-socials ul li a:hover {
+            animation: glow 0.5s ease forwards;
+            color: var(--color-white);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .section-header-copy,
+            .section-header-copy p,
+            .section-header-copy h1,
+            .section-header-copy h2,
+            .section-header-copy h3 {
+                animation: fadeInScale 0.8s ease-out forwards; /* Faster for mobile */
+            }
+
+            footer,
+            .footer-contact,
+            .footer-about,
+            .footer-socials,
+            .footer-form {
+                animation: slideInRight 0.8s ease-out forwards; /* Faster for mobile */
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="header-rooms">
@@ -34,24 +153,20 @@
                   <div class="dropdown-content">
                       <a href="conference.html">Conference</a>
                       <a href="compound.html">Event Booking</a>
-                      
                   </div>
               </li>
-
                 <li class="nav-manu-ul-li"><a href="contact_us.html">Contact-us</a></li>
             </ul>
         </nav>
         <section class="section-header-copy">
-            <p>WELCOME TO</p>
+            <p class="animated-text">Stay in Comfort at</p>
             <h1 class="section-header-copy-h1">HOTEL</h1>
             <h2>734</h2>
            <h3>Excellence Pays It All</h3>
         </section>
         <section class="section-header-CTA">
-            <!-- <div class="section-header-CTA-button"><img src="../images/book_now.png" alt="">BOOK NOW</div> -->
             <a href="#content-body" class="CTA-scroll-text">Scroll</a>
-            <a href="#content-body"><img src="./images/down_scroll.png" class="CTA-scroll-imgstatic" alt=""></a>
-            <a href="#content-body" class="CTA-scroll-animate"><img src="./images/down_scroll.png" alt=""></a>
+            <a href="#content-body" class="CTA-scroll-animate"><img src="./images/down_scroll.png" alt="Scroll Down"></a>
         </section>
     </header>
     <article id="content-body">
@@ -59,12 +174,9 @@
             <h2>ROOMS AND RATES</h2>
             <p>Each of our bright, light-flooded rooms come with everything you could possibly need for a comfortable stay. And yes,<br>comfort isn’t our only objective, we also value good design, sleek contemporary furnishing complemented<br>by the rich tones of nature’s palette as visible from our rooms’ sea-view windows and terraces. </p>
         </section>
-       
-        
           <header class="rein">
             <h1>Our Rooms</h1>
           </header>
-        
           <main>
             <!-- Expensive Room -->
             <div class="room-container">
@@ -82,7 +194,6 @@
                   <br>
                   <div class="feature-item">✔ Satellite TV Channels</div><br>
                   <br>
-                  <!-- <div class="feature-item">✔ 24-hour Fitness Center</div> -->
                   <div class="feature-item">✔ Air Conditioned Room</div><br>
                   <br>
                   <div class="feature-item">✔ Free Wifi</div><br>
@@ -93,12 +204,10 @@
                   <br>
                   <div class="feature-item">✔ Max 4 people</div><br>
                   <br>
-                  <!-- <div class="feature-item">✔ Room Size: 500 sqf</div> -->
                 </div>
                 <div class="price-tag">GHC300 <span>- Per Night</span></div>
               </div>
             </div>
-        
             <!-- Standard Room -->
             <div class="room-container">
               <div class="room-image">
@@ -115,7 +224,6 @@
                   <br>
                   <div class="feature-item">✔ Satellite TV Channels</div><br>
                   <br>
-                  <!-- <div class="feature-item">✔ 24-hour Fitness Center</div> -->
                   <div class="feature-item">✔ Air Conditioned Room</div><br>
                   <br>
                   <div class="feature-item">✔ Free Wifi</div><br>
@@ -124,13 +232,10 @@
                   <br>
                   <div class="feature-item">✔ 24h Room Service</div><br>
                   <br>
-                  <!-- <div class="feature-item">✔ Max 2 people</div> -->
-                  <!-- <div class="feature-item">✔ Room Size: 300 sqf</div> -->
                 </div>
                 <div class="price-tag">GHC250 <span>- Per Night</span></div>
               </div>
             </div>
-        
             <!-- Regular Room -->
             <div class="room-container">
               <div class="room-image">
@@ -147,7 +252,6 @@
                   <br>
                   <div class="feature-item">✔ Satellite TV Channels</div><br>
                   <br>
-                  <!-- <div class="feature-item">✔ 24-hour Fitness Center</div> -->
                   <div class="feature-item">✔ Air Conditioned Room</div><br>
                   <br>
                   <div class="feature-item">✔ Free Wifi</div><br>
@@ -156,22 +260,13 @@
                   <br>
                   <div class="feature-item">✔ 24h Room Service</div><br>
                   <br>
-                  <!-- <div class="feature-item">✔ Max 2 people</div>
-                  <div class="feature-item">✔ Room Size: 200 sqf</div> -->
                 </div>
                 <div class="price-tag">GHC200 <span>- Per Night</span></div>
               </div>
             </div>
-        
           </main>
-        
-        
-        
-
-        <!-- page body -->
     </article>
-    
-    <footer >
+    <footer>
         <div class="footer-contact">
             <div class="footer-left">
                 <img src="./images/logo.png" alt="Hotel 734 Logo">
@@ -200,8 +295,23 @@
                 </div>
             </form>
         </div>
-    </footer>    
+    </footer>
+    <script>
+        const elements = document.querySelectorAll('.section-header-copy, .section-header-copy p, .section-header-copy h1, .section-header-copy h2, .section-header-copy h3, footer, .footer-contact, .footer-about, .footer-socials, .footer-form');
 
-    
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, { threshold: 0.2 });
+
+        elements.forEach(element => {
+            observer.observe(element);
+            element.style.opacity = '0'; // Start hidden
+        });
+    </script>
 </body>
 </html>

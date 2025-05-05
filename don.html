@@ -5,12 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel 734 | Home</title>
-    <meta name="keywords" content="Luxury Hotels">
-    <meta name="author" content="Ayokunle for web site disign from Figma community">
-    <meta name="author" content="Francisco Cienfuegos for web site development">
-    <meta name="copyright" content="Design from Figma community">
-    <meta name="robots" content="nofollow">
-    <meta name="copyright" content="lincensed under CC BY 4.0">
+    
     <link rel="icon" type="image/png" href="./images/logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,68 +14,265 @@
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/main.css">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TVRG7TETG6"></script>
-    <script src="carousel.js"></script>
-    <script>
-        let currentIndex = 0;
-        const images = document.querySelectorAll('.carousel-image');
 
-        images.forEach((img) => {
-            img.onerror = () => {
-                console.error(`Image failed to load: ${img.src}`);
-                img.style.display = 'none'; // Hide the image if it fails to load
-            };
-        });
-
-        function showNextImage() {
-            images[currentIndex].style.display = 'none';
-            currentIndex = (currentIndex + 1) % images.length;
-            images[currentIndex].style.display = 'block';
+    <!-- Internal CSS for Animations -->
+    <style>
+        /* Animation Keyframes */
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
         }
 
-        setInterval(showNextImage, 3000); // Change image every 3 seconds
-    </script>
+        @keyframes pulseGlow {
+            0% { transform: scale(1); box-shadow: 0 0 0 rgba(224, 185, 115, 0); }
+            50% { transform: scale(1.1); box-shadow: 0 0 10px rgba(224, 185, 115, 0.8); }
+            100% { transform: scale(1); box-shadow: 0 0 0 rgba(224, 185, 115, 0); }
+        }
+
+        @keyframes slideUpGlow {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInLeft {
+            0% { opacity: 0; transform: translateX(-20px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInRight {
+            0% { opacity: 0; transform: translateX(20px) scale(0.95); }
+            100% { opacity: 1; transform: translateX(0) scale(1); }
+        }
+
+        @keyframes slideInRight {
+            0% { opacity: 0; transform: translateX(var(--space-m)); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 0 rgba(224, 185, 115, 0); }
+            100% { box-shadow: 0 0 15px rgba(224, 185, 115, 0.8); }
+        }
+
+        @keyframes kenBurns {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.1) translate(10px, 10px); }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Header Animations */
+        .nav-menu {
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .section-header-copy {
+            opacity: 0;
+            animation: fadeInScale 1s ease-out forwards;
+        }
+
+        .section-header-copy p {
+            animation: fadeInScale 1s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+
+        .section-header-copy h1 {
+            animation: fadeInScale 1s ease-out forwards;
+            animation-delay: 0.6s;
+        }
+
+        .section-header-copy h2 {
+            animation: fadeInScale 1s ease-out forwards;
+            animation-delay: 0.9s;
+        }
+
+        .section-header-copy h3 {
+            animation: fadeInScale 1s ease-out forwards;
+            animation-delay: 1.2s;
+        }
+
+        .section-header-CTA-button {
+            opacity: 0;
+            animation: slideUpGlow 1s ease-out forwards;
+            animation-delay: 1.5s;
+        }
+
+        .section-header-CTA-button:hover {
+            box-shadow: 0 0 15px rgba(224, 185, 115, 0.8);
+            transform: scale(1.05);
+            transition: all 0.3s ease;
+        }
+
+        .CTA-scroll-animate img {
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+
+        /* Carousel Animations */
+        .carousel-image {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 1s ease-in-out;
+            animation: kenBurns 10s linear forwards;
+        }
+
+        .carousel-image.active {
+            opacity: 1;
+        }
+
+        /* Main Section Animations */
+        .article-section-main-room-copy-child h2,
+        .article-section-main-beach-copy-child h2 {
+            opacity: 0;
+            animation: fadeInLeft 1s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+
+        .article-section-main-room-copy-child p,
+        .article-section-main-beach-copy-child p {
+            opacity: 0;
+            animation: fadeInLeft 1s ease-out forwards;
+            animation-delay: 0.6s;
+        }
+
+        .article-section-main-room-copy-child button,
+        .article-section-main-beach-copy-child button {
+            opacity: 0;
+            animation: fadeInLeft 1s ease-out forwards;
+            animation-delay: 0.9s;
+        }
+
+        .article-section-main-room-img,
+        .article-section-main-beach-img {
+            opacity: 0;
+            animation: fadeInRight 1s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+
+        .article-section-main-room-copy-child button:hover,
+        .article-section-main-beach-copy-child button:hover {
+            box-shadow: 0 0 15px rgba(224, 185, 115, 0.8);
+            transform: scale(1.05);
+            transition: all 0.3s ease;
+        }
+
+        /* Footer Animations */
+        .triangule-footer {
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+            animation-delay: 0.8s;
+        }
+
+        footer {
+            opacity: 0;
+            animation: slideInRight 1.2s ease-out forwards;
+            animation-delay: 1s;
+        }
+
+        .footer-contact,
+        .footer-about,
+        .footer-socials,
+        .footer-form {
+            opacity: 0;
+            animation: slideInRight 1s ease-out forwards;
+        }
+
+        .footer-contact { animation-delay: 1.2s; }
+        .footer-about { animation-delay: 1.4s; }
+        .footer-socials { animation-delay: 1.6s; }
+        .footer-form { animation-delay: 1.8s; }
+
+        .footer-about ul li a:hover,
+        .footer-socials ul li a:hover {
+            animation: glow 0.5s ease forwards;
+            color: var(--color-white);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .section-header-copy,
+            .section-header-copy p,
+            .section-header-copy h1,
+            .section-header-copy h2,
+            .section-header-copy h3,
+            .section-header-CTA-button,
+            .nav-menu {
+                animation-duration: 0.8s; /* Faster for mobile */
+            }
+
+            .article-section-main-room-copy-child h2,
+            .article-section-main-beach-copy-child h2,
+            .article-section-main-room-copy-child p,
+            .article-section-main-beach-copy-child p,
+            .article-section-main-room-copy-child button,
+            .article-section-main-beach-copy-child button,
+            .article-section-main-room-img,
+            .article-section-main-beach-img {
+                animation-duration: 0.8s; /* Faster for mobile */
+            }
+
+            footer,
+            .footer-contact,
+            .footer-about,
+            .footer-socials,
+            .footer-form,
+            .triangule-footer {
+                animation-duration: 0.8s; /* Faster for mobile */
+            }
+        }
+    </style>
 </head>
 <body>
-<header class="header-home">
+    <header class="header-home">
         <nav class="nav-menu">
-            <a href="don.html"><img src="./images/logo.png"></a>
+            <a href="don.html"><img src="./images/logo.png" alt="Hotel 734 Logo"></a>
             <ul>
-                <li class="list-style list-style::after"><a class="a-text-style" href="#">Home</a></li>
+                <li class="list-style list-style::after"><a class="a-text-style" href="don.html">Home</a></li>
                 <li class="nav-manu-ul-li"><a href="facilities.html">Facilities</a></li>
                 <li class="nav-manu-ul-li"><a href="rooms.html">Rooms</a></li>
-
                 <li class="nav-manu-ul-li dropdown">
                     <a href="#">Meetings & Events <span class="dropdown-arrow">▼</span></a>
                     <div class="dropdown-content">
                         <a href="conference.html">Conference</a>
                         <a href="compound.html">Event Booking</a>
-                        
                     </div>
                 </li>
-
-
                 <li class="nav-manu-ul-li"><a href="contact_us.html">Contact-us</a></li>
             </ul>
         </nav>
         <section class="section-header-copy">
             <p>WELCOME TO</p>
             <h1 class="section-header-copy-h1">HOTEL</h1>
-            <h2>734</h2>
+            <h2>734</h2><br>
             <h3>Excellence Pays It All</h3>
         </section>
         <section class="section-header-CTA">
             <a href="rooms.html" style="text-decoration: none;">
                 <div class="section-header-CTA-button">
-                  <img src="./images/book_now.png" alt="">BOOK NOW
+                    <img src="./images/book_now.png" alt="Book Now Icon">BOOK NOW
                 </div>
             </a>
             <a href="#content-body" class="CTA-scroll-text">scroll</a>
-            <a href="#content-body"><img src="./images/down_scroll.png" class="CTA-scroll-imgstatic" alt=""></a>
-            <a href="#content-body" class="CTA-scroll-animate"><img src="./images/down_scroll.png" alt=""></a>
+            <a href="#content-body" class="CTA-scroll-animate"><img src="./images/down_scroll.png" alt="Scroll Down"></a>
         </section>
     </header>
     <article id="content-body">
-        <section class="article-section-breakfast"></section>
+        <section class="article-section-breakfast">
+            <!-- Carousel Images -->
+            <div class="carousel">
+                <img src="./images/carousel1.jpg" class="carousel-image active" alt="Hotel View 1">
+                <img src="./images/carousel2.jpg" class="carousel-image" alt="Hotel View 2">
+                <img src="./images/carousel3.jpg" class="carousel-image" alt="Hotel View 3">
+            </div>
+        </section>
         <section class="article-section-main">
             <div class="article-section-main-room">
                 <div class="article-section-main-room-copy">
@@ -88,9 +280,9 @@
                         <h2>Luxury redefined</h2>
                         <p>Our rooms are designed to transport<br>you into an environment made for leisure.<br>Take your mind off the day-to-day of home<br>life and find a private paradise for yourself.</p>
                         <a href="rooms.html">
-                        <button>EXPLORE</button>
+                            <button>EXPLORE</button>
+                        </a>
                     </div>
-                </a>
                 </div>
                 <div class="article-section-main-room-img">
                     <div class="article-section-main-room-img-content"></div>
@@ -102,9 +294,9 @@
                         <h2>Leave your worries in<br>the sand</h2>
                         <p>We love life at the beach. Being close<br>to the ocean with access to endless sandy<br>beach ensures a relaxed state of mind. It<br>seems like time stands still watching the<br>ocean.</p>
                         <a href="facilities.html">
-                        <button>EXPLORE</button>
+                            <button>EXPLORE</button>
+                        </a>
                     </div>
-                </a>
                 </div>
                 <div class="article-section-main-beach-img">
                     <div class="article-section-main-beach-img-content"></div>
@@ -112,27 +304,27 @@
             </div>
         </section>
     </article>
-    <div>
-        <div class="triangule-footer"> <img src="./images/triangule.svg" alt=""> </div>
+    <div class="triangule-footer">
+        <img src="./images/triangule.svg" alt="Triangle Footer Decoration">
     </div>
     <footer>
         <div class="footer-contact">
             <div class="footer-left">
-            <img src="./images/logo.png" alt="Hotel 734 Logo">
+                <img src="./images/logo.png" alt="Hotel 734 Logo">
             </div>
             <p class="footer-contact-info" style="font-size: 13px;">New Edubiase, Off Bronikrom Road<br><br>+233 24 409 3821<br><br>Email: <a href="mailto:info@hotel734.com" style="text-decoration: none; font-size: 15px;">info@hotel734.com</a></p>
         </div>
-        <div class="footer-about" >
-            <ul >
-                <li><a href="#content-body" style="color: #FFD700; font-size: 13px;">About Us</a></li>
+        <div class="footer-about">
+            <ul>
+                <li><a href="don.html" style="color: #FFD700; font-size: 13px;">About Us</a></li>
                 <li><a href="contact_us.html" style="color: #FFD700; font-size: 13px;">Contact</a></li>
                 <li><a href="admin.html" style="color: #FFD700; font-size: 13px;">Admin</a></li>
             </ul>
         </div>
         <div class="footer-socials">
             <ul>
-                <li><a href="https://www.facebook.com/hotel734?mibextid=ZbWKwL" style="font-size: 13px;"><img class="socials-facebook" src="./images/facebook_icon.png" alt="">Facebook</a></li>
-                <li><a href="https://www.instagram.com/hotel.734?igsh=MWw2NXBxZ3R5a3V3YQ==" style="font-size: 13px;"><img class="socials-instagram" src="./images/instagram_icon.png" alt="">Instagram</a></li>
+                <li><a href="https://www.facebook.com/hotel734?mibextid=ZbWKwL" style="font-size: 13px;"><img class="socials-facebook" src="./images/facebook_icon.png" alt="Facebook Icon">Facebook</a></li>
+                <li><a href="https://www.instagram.com/hotel.734?igsh=MWw2NXBxZ3R5a3V3YQ==" style="font-size: 13px;"><img class="socials-instagram" src="./images/instagram_icon.png" alt="Instagram Icon">Instagram</a></li>
             </ul>
         </div>
         <div class="footer-form">
@@ -144,6 +336,48 @@
                 </div>
             </form>
         </div>
-    </footer>    
+    </footer>
+    <script>
+        // Carousel Logic
+        const images = document.querySelectorAll('.carousel-image');
+        let currentIndex = 0;
+
+        // Initialize carousel
+        images.forEach((img, index) => {
+            img.style.opacity = index === 0 ? '1' : '0';
+            img.classList.toggle('active', index === 0);
+            img.onerror = () => {
+                console.error(`Image failed to load: ${img.src}`);
+                img.style.display = 'none'; // Hide if it fails to load
+            };
+        });
+
+        function showNextImage() {
+            images[currentIndex].style.opacity = '0';
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].style.opacity = '1';
+            images[currentIndex].classList.add('active');
+        }
+
+        setInterval(showNextImage, 5000); // Change image every 5 seconds
+
+        // Intersection Observer for Animations
+        const elements = document.querySelectorAll('.nav-menu, .section-header-copy, .section-header-copy p, .section-header-copy h1, .section-header-copy h2, .section-header-copy h3, .section-header-CTA-button, .article-section-main-room-copy-child h2, .article-section-main-room-copy-child p, .article-section-main-room-copy-child button, .article-section-main-room-img, .article-section-main-beach-copy-child h2, .article-section-main-beach-copy-child p, .article-section-main-beach-copy-child button, .article-section-main-beach-img, .triangule-footer, footer, .footer-contact, .footer-about, .footer-socials, .footer-form');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, { threshold: 0.2 });
+
+        elements.forEach(element => {
+            observer.observe(element);
+            element.style.opacity = '0'; // Start hidden
+        });
+    </script>
 </body>
 </html>

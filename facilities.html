@@ -1,50 +1,176 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOTEL 734 | facilities</title>
+    <title>HOTEL 734 | Facilities</title>
     <meta name="keywords" content="Luxury Hotels">
-    <meta name="author" content="Ayokunle for web site disign from Figma community">
+    <meta name="author" content="Ayokunle for web site design from Figma community">
     <meta name="author" content="Francisco Cienfuegos for web site development">
     <meta name="copyright" content="Design from Figma community">
     <meta name="robots" content="nofollow">
-    <meta name="copyright" content="lincensed under CC BY 4.0">
-    <!-- Font style: montserrat regular 400, bold 700 and cormorant garamond bold 700 -->
+    <meta name="copyright" content="licensed under CC BY 4.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Reset css with normalize -->
     <link rel="stylesheet" href="./css/normalize.css">
-    <!-- Style sheets -->
     <link rel="stylesheet" href="./css/main.css">
     <link rel="icon" type="image/png" href="./images/logo.png">
+    <style>
+        /* Animation Keyframes */
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); box-shadow: 0 0 0 rgba(224, 185, 115, 0); }
+            50% { transform: scale(1.1); box-shadow: 0 0 10px rgba(224, 185, 115, 0.8); }
+            100% { transform: scale(1); box-shadow: 0 0 0 rgba(224, 185, 115, 0); }
+        }
+
+        @keyframes slideUpGlow {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            0% { opacity: 0; transform: translateX(var(--space-m)); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes glow {
+            0% { box-shadow: 0 0 0 rgba(224, 185, 115, 0); }
+            100% { box-shadow: 0 0 15px rgba(224, 185, 115, 0.8); }
+        }
+
+        /* Header Animations */
+        .nav-menu {
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .section-header-copy {
+            opacity: 0;
+            animation: fadeInScale 1s ease-out forwards;
+        }
+
+        .section-header-copy p {
+            animation: fadeInScale 1s ease-out forwards;
+            animation-delay: 0.3s;
+        }
+
+        .section-header-copy h1 {
+            animation: fadeInScale 1s ease-out forwards;
+            animation-delay: 0.6s;
+        }
+
+        .section-header-copy h2 {
+            animation: fadeInScale 1s ease-out forwards;
+            animation-delay: 0.9s;
+        }
+
+        .section-header-CTA-button {
+            opacity: 0;
+            animation: slideUpGlow 1s ease-out forwards;
+            animation-delay: 1.2s;
+        }
+
+        .section-header-CTA-button:hover {
+            box-shadow: 0 0 15px rgba(224, 185, 115, 0.8);
+            transform: scale(1.05);
+            transition: all 0.3s ease;
+        }
+
+        .CTA-scroll-animate img {
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+
+        /* Footer Animations */
+        .triangule-footer {
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+            animation-delay: 0.8s;
+        }
+
+        footer {
+            opacity: 0;
+            animation: slideInRight 1.2s ease-out forwards;
+            animation-delay: 1s;
+        }
+
+        .footer-contact,
+        .footer-about,
+        .footer-socials,
+        .footer-form {
+            opacity: 0;
+            animation: slideInRight 1s ease-out forwards;
+        }
+
+        .footer-contact { animation-delay: 1.2s; }
+        .footer-about { animation-delay: 1.4s; }
+        .footer-socials { animation-delay: 1.6s; }
+        .footer-form { animation-delay: 1.8s; }
+
+        .footer-about ul li a:hover,
+        .footer-socials ul li a:hover {
+            animation: glow 0.5s ease forwards;
+            color: var(--color-white);
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .nav-menu,
+            .section-header-copy,
+            .section-header-copy p,
+            .section-header-copy h1,
+            .section-header-copy h2,
+            .section-header-CTA-button,
+            .triangule-footer,
+            footer,
+            .footer-contact,
+            .footer-about,
+            .footer-socials,
+            .footer-form {
+                animation-duration: 0.8s; /* Faster for mobile */
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="header-facilities">
         <nav class="nav-menu">
-            <a href="don.html"><img src="./images/logo.png" alt="Luxury Hotels"></a>
+            <a href="don.html"><img src="./images/logo.png" alt="Hotel 734 Logo"></a>
             <ul>
                 <li class="nav-manu-ul-li"><a href="don.html">Home</a></li>
-                <li class="list-style list-style::after"><a class="a-text-style" href="#">Facilities</a></li>
+                <li class="list-style list-style::after"><a class="a-text-style" href="facilities.html">Facilities</a></li>
                 <li class="nav-manu-ul-li"><a href="rooms.html">Rooms</a></li>
-
                 <li class="nav-manu-ul-li dropdown">
                     <a href="#">Meetings & Events <span class="dropdown-arrow">▼</span></a>
                     <div class="dropdown-content">
                         <a href="conference.html">Conference</a>
                         <a href="compound.html">Event Booking</a>
-                        
                     </div>
                 </li>
-
                 <li class="nav-manu-ul-li"><a href="contact_us.html">Contact-us</a></li>
             </ul>
         </nav>
-       
-        
+        <section class="section-header-copy">
+            <p>Discover the Exceptional Facilities at</p>
+            <h1 class="section-header-copy-h1">HOTEL</h1>
+            <h2>734</h2>
+        </section>
+        <section class="section-header-CTA">
+           
+            <a href="#content-body" class="CTA-scroll-text">scroll</a>
+            <a href="#content-body" class="CTA-scroll-animate"><img src="./images/down_scroll.png" alt="Scroll Down"></a>
+        </section>
     </header>
     <article id="content-body">
         <section class="article-section-copy">
@@ -62,7 +188,6 @@
                     </div>
                     <figcaption class="gallery-caption">Hotel View</figcaption>
                 </figure>
-        
                 <!-- Swimming Pool -->
                 <figure class="gallery-item">
                     <div class="image-carousel">
@@ -72,7 +197,6 @@
                     </div>
                     <figcaption class="gallery-caption">Swimming Pool</figcaption>
                 </figure>
-        
                 <figure class="gallery-item">
                     <div class="image-carousel">
                         <img src="./images/pool.jpg" alt="Swimming Pool 1" class="active">
@@ -89,8 +213,6 @@
                     </div>
                     <figcaption class="gallery-caption">Night Club</figcaption>
                 </figure>
-
-
                 <figure class="gallery-item">
                     <div class="image-carousel">
                         <img src="./images/pool.jpg" alt="Swimming Pool 1" class="active">
@@ -101,32 +223,28 @@
                 </figure>
             </div>
         </section>
-
-       
     </article>
-    <div>
-        <div class="triangule-footer"> <img src="./images/triangule.svg" alt=""> </div>
+    <div class="triangule-footer">
+        <img src="./images/triangule.svg" alt="Triangle Footer Decoration">
     </div>
     <footer>
         <div class="footer-contact">
             <div class="footer-left">
                 <img src="./images/logo.png" alt="Hotel 734 Logo">
-                </div>
-
-                <p style="font-size: 13px;">New Edubiase, Off Bronikrom Road<br><br>+233 24 409 3821<br><br>Email: <a href="mailto:info@hotel734.com" style="text-decoration: none; font-size: 15px;">info@hotel734.com</a></p>
+            </div>
+            <p style="font-size: 13px;">New Edubiase, Off Bronikrom Road<br><br>+233 24 409 3821<br><br>Email: <a href="mailto:info@hotel734.com" style="text-decoration: none; font-size: 15px;">info@hotel734.com</a></p>
         </div>
-    
         <div class="footer-about">
             <ul>
                 <li><a href="don.html" style="color: #FFD700; font-size: 13px;">About Us</a></li>
                 <li><a href="contact_us.html" style="color: #FFD700; font-size: 13px;">Contact</a></li>
-                <li> <a href="admin.html" style="color: #FFD700; font-size: 13px;">Admin</a></li>
+                <li><a href="admin.html" style="color: #FFD700; font-size: 13px;">Admin</a></li>
             </ul>
         </div>
         <div class="footer-socials">
             <ul>
-                <li><a href="https://www.facebook.com/hotel734?mibextid=ZbWKwL style="  style="font-size: 13px;"><img class="socials-facebook" src="./images/facebook_icon.png" alt="">Facebook</a></li>
-                <li><a href="https://www.instagram.com/hotel.734?igsh=MWw2NXBxZ3R5a3V3YQ=="  style="font-size: 13px;"><img class="socials-instagram" src="./images/instagram_icon.png" alt="">Instagram</a></li>
+                <li><a href="https://www.facebook.com/hotel734?mibextid=ZbWKwL" style="font-size: 13px;"><img class="socials-facebook" src="./images/facebook_icon.png" alt="Facebook Icon">Facebook</a></li>
+                <li><a href="https://www.instagram.com/hotel.734?igsh=MWw2NXBxZ3R5a3V3YQ==" style="font-size: 13px;"><img class="socials-instagram" src="./images/instagram_icon.png" alt="Instagram Icon">Instagram</a></li>
             </ul>
         </div>
         <div class="footer-form">
@@ -139,6 +257,24 @@
             </form>
         </div>
     </footer>
-    <script src="carousel.js"></script>    
+    <script src="carousel.js"></script>
+    <script>
+        // Intersection Observer for Header and Footer Animations
+        const elements = document.querySelectorAll('.nav-menu, .section-header-copy, .section-header-copy p, .section-header-copy h1, .section-header-copy h2, .section-header-CTA-button, .triangule-footer, footer, .footer-contact, .footer-about, .footer-socials, .footer-form');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, { threshold: 0.2 });
+
+        elements.forEach(element => {
+            observer.observe(element);
+            element.style.opacity = '0'; // Start hidden
+        });
+    </script>
 </body>
 </html>
